@@ -107,7 +107,7 @@ addFriend(
   calculateAge("2004-08-23"),
   "23-08-2004",
   "",
-  "Tıbbi Labaratuvar Teknikeri"
+  "Tıbbi Laboratuvar Teknikeri"
 );
 
 export default DATA;
