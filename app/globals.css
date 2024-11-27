@@ -19,3 +19,52 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.navbar {
+  @apply flex items-center justify-between h-16 bg-gradient-to-l to-orange-400 from-orange-700 rounded-full px-5;
+}
+
+.navbarLink {
+  @apply text-2xl font-medium italic flex items-center gap-1.5 bg-gray-950 hover:bg-gray-900 duration-200 rounded-full px-5;
+}
+
+.home-header {
+  height: calc(100vh - 144px);
+  @apply flex flex-col items-center justify-center gap-7;
+}
+
+.friendCard {
+  @apply flex flex-col items-center relative p-5 rounded-lg border-2 border-solid border-transparent hover:border-orange-500 duration-200 w-[320px] h-[220px] pt-16;
+
+  background-color: #202122;
+  &:hover {
+    background-color: #000000;
+  }
+}
+
+.fcImageDiv {
+  @apply w-[100px] h-[100px] rounded-lg overflow-hidden absolute left-1/2 -translate-x-1/2 -top-1/2 translate-y-1/2 bg-black border-2 border-solid border-orange-500 text-orange-100;
+}
+
+.fcNameSurname {
+  @apply w-full flex justify-center items-center gap-1 text-xl font-bold;
+}
+
+.fcBirthdayPart {
+  @apply w-full flex justify-between items-center absolute left-0 bottom-5 px-5;
+}
+
+@media (max-width: 425px) {
+  .navbarLink {
+    @apply text-xl w-full justify-center;
+  }
+}
+
+@media (max-width: 320px) {
+  .navbar {
+    @apply px-1.5 h-12;
+  }
+  .navbarLink {
+    @apply text-base w-full justify-center;
+  }
+}
