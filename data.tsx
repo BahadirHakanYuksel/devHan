@@ -7,7 +7,7 @@ class friend {
   age: number;
   birthdayDate: string;
   profilePhoto: string = "";
-  department: string = "Mühendis";
+  department: string = "Handaş";
   constructor(
     id: string,
     name: string,
@@ -98,6 +98,16 @@ addFriend(
   "02-04-2003",
   "/images/bhy.jpg",
   "Bilgisayar Mühendisi"
+);
+
+addFriend(
+  nanoid(),
+  "Umut",
+  "YILDIZ",
+  calculateAge("2004-08-23"),
+  "23-08-2004",
+  "",
+  "Tıbbi Labaratuvar Teknikeri"
 );
 
 export default DATA;
