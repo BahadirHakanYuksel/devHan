@@ -27,8 +27,6 @@ class friend {
   }
 }
 
-let DATA: friend[] = [];
-
 const calculateAge = (birthdayDate: string): number => {
   const today = new Date();
   const birthDate = new Date(birthdayDate);
@@ -53,63 +51,63 @@ const addFriend = (
     new friend(id, name, surname, age, birthdayDate, profilePhoto, department)
   );
 };
-addFriend(
-  nanoid(),
-  "Ersin Emre",
-  "AKCA",
-  calculateAge("2003-08-08"),
-  "08-08-2003",
-  "",
-  "Elektrik-Elektronik Mühendisi"
-);
-addFriend(
-  nanoid(),
-  "Sadiye Canan",
-  "EKENTOK",
-  calculateAge("2003-07-03"),
-  "03-07-2003",
-  "",
-  "Bilgisayar Mühendisi"
-);
-addFriend(
-  nanoid(),
-  "Burak",
-  "ERGÜVEN",
-  calculateAge("2003-03-19"),
-  "19-03-2003",
-  "",
-  "Bilgisayar Mühendisi"
-);
-addFriend(
-  nanoid(),
-  "Abdulkadir",
-  "İNAL",
-  calculateAge("2003-05-26"),
-  "26-05-2004",
-  "",
-  "Bilgisayar Mühendisi"
-);
 
-addFriend(
-  nanoid(),
-  "Bahadır Hakan",
-  "YÜKSEL",
-  calculateAge("2003-04-02"),
-  "02-04-2003",
-  "/images/bhy.jpg",
-  "Bilgisayar Mühendisi"
-);
-
-addFriend(
-  nanoid(),
-  "Umut",
-  "YILDIZ",
-  calculateAge("2004-08-23"),
-  "23-08-2004",
-  "",
-  "Tıbbi Laboratuvar Teknikeri"
-);
-
+let DATA: friend[] = [
+  {
+    id: nanoid(),
+    name: "Ersin Emre",
+    surname: "AKCA",
+    age: calculateAge("2003-08-08"),
+    birthdayDate: "08-08-2003",
+    profilePhoto: "",
+    department: "Elektrik-Elektronik Mühendisi",
+  },
+  {
+    id: nanoid(),
+    name: "Sadiye Canan",
+    surname: "EKENTOK",
+    age: calculateAge("2003-07-03"),
+    birthdayDate: "03-07-2003",
+    profilePhoto: "/images/canan.jpg",
+    department: "Bilgisayar Mühendisi",
+  },
+  {
+    id: nanoid(),
+    name: "Burak",
+    surname: "ERGÜVEN",
+    age: calculateAge("2003-03-19"),
+    birthdayDate: "19-03-2003",
+    profilePhoto: "",
+    department: "Bilgisayar Mühendisi",
+  },
+  {
+    id: nanoid(),
+    name: "Abdulkadir",
+    surname: "İNAL",
+    age: calculateAge("2003-05-26"),
+    birthdayDate: "26-05-2004",
+    profilePhoto: "",
+    department: "Bilgisayar Mühendisi",
+  },
+  {
+    id: nanoid(),
+    name: "Bahadır Hakan",
+    surname: "YÜKSEL",
+    age: calculateAge("2003-04-02"),
+    birthdayDate: "02-04-2003",
+    profilePhoto: "/images/bhy.jpg",
+    department: "Bilgisayar Mühendisi",
+  },
+  {
+    id: nanoid(),
+    name: "Umut",
+    surname: "YILDIZ",
+    age: calculateAge("2004-08-23"),
+    birthdayDate: "23-08-2004",
+    profilePhoto: "",
+    department: "Tıbbi Laboratuvar Teknikeri",
+  },
+];
 export default DATA;
 
 export const welcomeTextArray = [

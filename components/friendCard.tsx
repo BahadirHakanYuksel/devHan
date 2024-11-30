@@ -1,7 +1,9 @@
+import { convertURLForm, trToEn } from "@/lib/friend";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaRegUser } from "react-icons/fa";
+import Department from "./department";
 
 interface FriendCardProps {
   id: string;
@@ -15,7 +17,10 @@ interface FriendCardProps {
 
 export default function FriendCard(friend: FriendCardProps) {
   return (
-    <Link href={`/${friend.id}`} className="friendCard">
+    <Link
+      href={`/${convertURLForm(trToEn(friend.name))}`}
+      className="friendCard"
+    >
       <div className="fcImageDiv">
         {friend.profilePhoto !== "" ? (
           <Image
@@ -24,6 +29,7 @@ export default function FriendCard(friend: FriendCardProps) {
             Resmi`}
             width={100}
             height={100}
+            className="aspect-square object-cover rounded-full"
           />
         ) : (
           <div className="flex items-center justify-center text-3xl w-full h-full">
@@ -37,9 +43,7 @@ export default function FriendCard(friend: FriendCardProps) {
           <p>{friend.surname}</p>
         </div>
         {friend.department && (
-          <p className="bg-orange-700 text-xs text-center rounded-full bg-opacity-50 text-white px-2.5">
-            {friend.department}
-          </p>
+          <Department size="small">{friend.department}</Department>
         )}
       </div>
       <div className="fcBirthdayPart ">

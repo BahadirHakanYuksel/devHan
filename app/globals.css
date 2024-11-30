@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -43,7 +43,7 @@ body {
 }
 
 .fcImageDiv {
-  @apply w-[100px] h-[100px] rounded-lg overflow-hidden absolute left-1/2 -translate-x-1/2 -top-1/2 translate-y-1/2 bg-black border-2 border-solid border-orange-500 text-orange-100;
+  @apply w-[100px] h-[100px] rounded-full overflow-hidden absolute left-1/2 -translate-x-1/2 -top-1/2 translate-y-1/2 bg-black border-2 border-solid border-orange-500 text-orange-100;
 }
 
 .fcNameSurname {
