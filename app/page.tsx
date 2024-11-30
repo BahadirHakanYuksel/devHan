@@ -1,4 +1,3 @@
-import Plan from "@/components/plan";
 import Team from "@/components/team";
 import { welcomeTextArray } from "@/data";
 import classNames from "classnames";
@@ -23,7 +22,6 @@ export default function Home() {
         ))}
       </header>
       <Team />
-      <Plan />
     </div>
   );
 }

@@ -23,20 +23,35 @@ interface Params {
 export default function FriendDetailPage({
   params,
 }: {
-  params: Params;
+  params: Promise<Params>;
 }): JSX.Element {
-  const { name } = params;
-  console.log(name);
-
   const [user, setUser] = useState<Friend | null>(null);
+  const [name, setName] = useState<string | null>(null);
+
   useEffect(() => {
-    const friend = findFriend(name as string);
-    if (friend) {
-      setUser(friend);
-    } else {
-      throw new Error("Friend not found");
+    const fetchParams = async () => {
+      try {
+        const resolvedParams = await params; // Resolve the promise
+        setName(resolvedParams.name); // Extract 'name' from resolved params
+      } catch (error) {
+        console.error("Error resolving params:", error);
+      }
+    };
+
+    fetchParams();
+  }, [params]);
+
+  useEffect(() => {
+    if (name) {
+      const friend = findFriend(name); // Find the friend based on the 'name'
+      if (friend) {
+        setUser(friend);
+      } else {
+        throw new Error("Friend not found");
+      }
     }
   }, [name]);
+
   return (
     <div className="p-10 flex flex-col gap-5 items-center">
       <div className="w-[220px] h-[220px] rounded-full flex items-center justify-center overflow-hidden border-2 border-solid border-gray-400 text-7xl">
