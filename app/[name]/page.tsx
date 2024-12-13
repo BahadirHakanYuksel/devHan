@@ -1,10 +1,12 @@
 "use client";
 
-import { findFriend } from "@/lib/friend";
+import { filteredFriends, findFriend } from "@/lib/friend";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaUser } from "react-icons/fa";
 import Department from "@/components/department";
+import FriendCard from "@/components/friendCard";
+import Team from "@/components/team";
 
 interface Friend {
   id: string;
@@ -26,6 +28,7 @@ export default function FriendDetailPage({
   params: Promise<Params>;
 }): JSX.Element {
   const [user, setUser] = useState<Friend | null>(null);
+  const [filteredList, setFilteredList] = useState<Friend[] | null>(null);
   const [name, setName] = useState<string | null>(null);
 
   useEffect(() => {
@@ -46,6 +49,7 @@ export default function FriendDetailPage({
       const friend = findFriend(name); // Find the friend based on the 'name'
       if (friend) {
         setUser(friend);
+        setFilteredList(filteredFriends(friend.name)); // Filter the friends list
       } else {
         throw new Error("Friend not found");
       }
@@ -67,28 +71,26 @@ export default function FriendDetailPage({
           <FaUser />
         )}
       </div>
-      <div className="text-3xl font-medium text-white">
+      <div className="friend-name">
         {user?.name} {user?.surname}
       </div>
       <Department size="large">{user?.department}</Department>
       <div className="flex flex-col gap-2.5 h-[52px]">
         <div className="flex items-center justify-center gap-2.5">
-          <p className="text-2xl font-medium text-orange-200 bg-orange-500 rounded-xl bg-opacity-20 px-10 py-2.5 w-56">
-            Yaş
-          </p>
-          <p className="text-2xl font-medium text-white bg-white bg-opacity-10 h-full flex items-center justify-center rounded-xl w-40">
-            {user?.age}
-          </p>
+          <p className="birthday-text">Yaş</p>
+          <p className="birthday-text-value">{user?.age}</p>
         </div>
         <div className="flex items-center justify-center gap-2.5">
-          <p className="text-2xl font-medium text-orange-200 rounded-xl bg-orange-500 bg-opacity-20 px-10 py-2.5 w-56">
-            Doğum Günü
-          </p>
-          <p className="text-2xl font-medium text-white bg-white bg-opacity-10 h-full flex items-center justify-center rounded-xl w-40">
-            {user?.birthdayDate}
-          </p>
+          <p className="birthday-text">Doğum Günü</p>
+          <p className="birthday-text-value">{user?.birthdayDate}</p>
         </div>
       </div>
+
+      {filteredList && (
+        <div className="mt-44">
+          {<Team data={filteredList} page="FRIEND_DETAIL" />}
+        </div>
+      )}
     </div>
   );
 }

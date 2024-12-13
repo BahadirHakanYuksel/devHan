@@ -1,10 +1,12 @@
 import Team from "@/components/team";
-import { welcomeTextArray } from "@/data";
+import UpdateMain from "@/components/UpdateMain";
+import DATA, { welcomeTextArray } from "@/data";
 import classNames from "classnames";
 
 export default function Home() {
   return (
     <div className="home">
+      <UpdateMain />
       <header className="home-header">
         {welcomeTextArray.map((text, index) => (
           <p
@@ -21,7 +23,7 @@ export default function Home() {
           </p>
         ))}
       </header>
-      <Team />
+      <Team data={DATA} page={"HOME"} />
     </div>
   );
 }

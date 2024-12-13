@@ -22,3 +22,9 @@ export const trToEn = (name: string) => {
     return english[turkish.indexOf(m)];
   });
 };
+
+export const filteredFriends = (name: string) => {
+  return DATA.filter(
+    (friend) => friend.name.toLowerCase() !== name.toLowerCase()
+  );
+};

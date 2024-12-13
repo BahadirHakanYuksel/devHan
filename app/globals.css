@@ -20,6 +20,16 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+input,
+textarea,
+button {
+  outline: none;
+}
+
+.home {
+  @apply flex flex-col items-center gap-20 relative;
+}
+
 .navbar {
   @apply flex items-center justify-between h-16 bg-gradient-to-l to-orange-400 from-orange-700 rounded-full px-5;
 }
@@ -54,9 +64,43 @@ body {
   @apply w-full flex justify-between items-center absolute left-0 bottom-5 px-5;
 }
 
+.birthday-text {
+  @apply text-2xl font-medium text-orange-200 rounded-xl bg-orange-500 bg-opacity-20 px-10 py-2.5 w-56;
+}
+
+.birthday-text-value {
+  @apply text-2xl font-medium text-white bg-white bg-opacity-10 h-full flex items-center justify-center rounded-xl w-40;
+}
+
+.friend-name {
+  @apply text-3xl font-medium text-white;
+}
+
 @media (max-width: 425px) {
   .navbarLink {
     @apply text-xl w-full justify-center;
+  }
+}
+
+@media (max-width: 376px) {
+  .navbar {
+    @apply px-0.5 py-0.5;
+  }
+
+  .navbarLink {
+    @apply h-full;
+  }
+
+  .birthday-text {
+    @apply text-lg w-40 px-2.5;
+  }
+
+  .birthday-text-value {
+    @apply text-lg w-40 px-2.5;
+  }
+
+  .friend-name {
+    @apply text-xl;
   }
 }
 

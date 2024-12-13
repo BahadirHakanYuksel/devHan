@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid";
 
-class friend {
+export class friend {
   id: string;
   name: string;
   surname: string;
@@ -14,7 +14,7 @@ class friend {
     surname: string,
     age: number,
     birthdayDate: string,
-    profilePhoto: string,
+    profilePhoto?: string,
     department?: string
   ) {
     this.id = id;
@@ -59,7 +59,7 @@ let DATA: friend[] = [
     surname: "AKCA",
     age: calculateAge("2003-08-08"),
     birthdayDate: "08-08-2003",
-    profilePhoto: "",
+    profilePhoto: "/images/ersin.png",
     department: "Elektrik-Elektronik Mühendisi",
   },
   {
@@ -77,7 +77,7 @@ let DATA: friend[] = [
     surname: "ERGÜVEN",
     age: calculateAge("2003-03-19"),
     birthdayDate: "19-03-2003",
-    profilePhoto: "",
+    profilePhoto: "/images/burak.png",
     department: "Bilgisayar Mühendisi",
   },
   {
@@ -86,7 +86,7 @@ let DATA: friend[] = [
     surname: "İNAL",
     age: calculateAge("2003-05-26"),
     birthdayDate: "26-05-2004",
-    profilePhoto: "",
+    profilePhoto: "/images/abdulkadir.png",
     department: "Bilgisayar Mühendisi",
   },
   {

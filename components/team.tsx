@@ -1,16 +1,20 @@
-import DATA from "@/data";
+import DATA, { friend } from "@/data";
 import FriendCard from "./friendCard";
+import Title from "./title";
 
-export default function Team() {
+interface TeamProps {
+  data: friend[];
+  page: "HOME" | "FRIEND_DETAIL";
+}
+
+export default function Team({ data, page = "HOME" }: TeamProps) {
   return (
     <div className="flex flex-col gap-20 items-center">
-      <div>
-        <header className="text-5xl font-medium border-b-2 border-solid border-b-orange-500 px-2.5 py-2.5 mb-5">
-          Ekip
-        </header>
-      </div>
+      <Title>
+        {page === "HOME" ? "Ekibimiz" : "Diğer Ekip Arkadaşlarımız"}
+      </Title>
       <div className="flex flex-wrap justify-center gap-x-7 gap-y-24">
-        {DATA.map((friend, index) => (
+        {data.map((friend, index) => (
           <FriendCard key={index} {...friend} />
         ))}
       </div>
