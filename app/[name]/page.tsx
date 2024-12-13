@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaUser } from "react-icons/fa";
 import Department from "@/components/department";
-import FriendCard from "@/components/friendCard";
 import Team from "@/components/team";
 
 interface Friend {

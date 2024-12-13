@@ -1,4 +1,4 @@
-import DATA, { friend } from "@/data";
+import { friend } from "@/data";
 import FriendCard from "./friendCard";
 import Title from "./title";
 

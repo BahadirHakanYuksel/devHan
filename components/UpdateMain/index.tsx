@@ -4,7 +4,7 @@ import { useState } from "react";
 import UpdateNotes from "./updateNotes";
 
 export default function UpdateMain() {
-  const [updateNotesActive, setUpdateNotesActive] = useState<Boolean>(false);
+  const [updateNotesActive, setUpdateNotesActive] = useState(false);
 
   return (
     <div className="absolute left-1/2 -translate-x-1/2 top-0">

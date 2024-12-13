@@ -1,5 +1,7 @@
+import React from "react";
+
 interface TitleProps {
-  children: String;
+  children: React.ReactNode;
 }
 
 export default function Title({ children }: TitleProps) {
