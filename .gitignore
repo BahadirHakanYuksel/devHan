@@ -13,6 +13,13 @@
 # testing
 /coverage
 
+# Prisma'nın oluşturduğu dosyalar
+/prisma/generated
+/node_modules/@prisma/client
+
+# Vercel yapılandırması
+vercel.json
+
 # next.js
 /.next/
 /out/
