@@ -1,3 +1,5 @@
+import FeedbackForm from "@/components/feedbackForm";
+import FeedbackList from "@/components/feedBackList";
 import Team from "@/components/team";
 import UpdateMain from "@/components/UpdateMain";
 import DATA, { welcomeTextArray } from "@/data";
@@ -24,6 +26,8 @@ export default function Home() {
         ))}
       </header>
       <Team data={DATA} page={"HOME"} />
+      <FeedbackForm />
+      <FeedbackList />
     </div>
   );
 }
