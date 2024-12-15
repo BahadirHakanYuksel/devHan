@@ -28,6 +28,7 @@ export default function FeedbackForm() {
     if (response.ok) {
       alert("Feedback submitted!");
       setForm({ feedback: "", name: "" });
+      window.location.reload();
     } else {
       alert("Error submitting feedback");
     }
