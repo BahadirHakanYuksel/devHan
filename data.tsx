@@ -104,8 +104,17 @@ let DATA: friend[] = [
     surname: "YILDIZ",
     age: calculateAge("2004-08-23"),
     birthdayDate: "23-08-2004",
-    profilePhoto: "",
+    profilePhoto: "/images/umut.jpg",
     department: "Tıbbi Laboratuvar Teknikeri",
+  },
+  {
+    id: nanoid(),
+    name: "Ensar",
+    surname: "",
+    age: calculateAge("2004-10-05"),
+    birthdayDate: "05-10-2004",
+    profilePhoto: "/images/ensar.jpg",
+    department: "Elektrik-Elektronik Mühendisi",
   },
 ];
 export default DATA;

@@ -13,13 +13,10 @@ export default function Home() {
         {welcomeTextArray.map((text, index) => (
           <p
             key={index}
-            className={classNames(
-              "text-5xl font-medium italic flex items-center gap-1.5 px-5",
-              {
-                "!text-transparent bg-gradient-to-bl to-orange-500 from-orange-300 bg-clip-text":
-                  index === 1,
-              }
-            )}
+            className={classNames("welcomeText", {
+              "!text-transparent bg-gradient-to-l to-orange-800 from-orange-300 bg-clip-text":
+                index === 1,
+            })}
           >
             {text}
           </p>

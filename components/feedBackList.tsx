@@ -35,7 +35,7 @@ export default function FeedbackList() {
               className="flex flex-col gap-2.5 border-2 border-solid border-gray-700 hover:border-orange-700 duration-200 p-5 rounded-lg w-[320px] "
             >
               <div className="flex items-center justify-between">
-                <strong className="text-orange-200 text-lg">
+                <strong className="text-orange-200 text-lg titleFont">
                   {item.name ? item.name : "Admin"}
                 </strong>
                 <em className="text-gray-500 text-xs font-medium">

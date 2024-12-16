@@ -47,7 +47,7 @@ export default function FriendCard(friend: FriendCardProps) {
         )}
       </div>
       <div className="fcBirthdayPart ">
-        <p className="bg-gradient-to-tr to-orange-500 from-orange-800 px-2.5 text-xl italic font-medium rounded-md">
+        <p className="bg-gradient-to-tr to-orange-500 from-orange-800 px-2.5 text-xl italic font-medium rounded-md titleFont">
           {friend.birthdayDate}
         </p>
         <p className="bg-white text-orange-500 px-2.5 text-xl italic font-extrabold rounded-md">

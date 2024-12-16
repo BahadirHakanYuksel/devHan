@@ -41,10 +41,12 @@ export default function FeedbackForm() {
       <Title>Bize Görüşlerinizi İletin</Title>
       <form onSubmit={handleSubmit} className="flex flex-col gap-8 w-[320px]">
         <div className="flex flex-col gap-0.5">
-          <header className="text-lg font-medium text-orange-200">İsim</header>
+          <header className="text-lg font-medium text-orange-200 titleFont">
+            İsim
+          </header>
           <input
             value={form.name}
-            className="border border-gray-300 px-2.5 h-14 bg-transparent focus:border-orange-300 rounded-lg"
+            className="border-2 border-gray-300 px-2.5 h-14 bg-transparent focus:border-orange-300 rounded-lg"
             onChange={(e) => setForm({ ...form, name: e.target.value })}
             placeholder="Tanışmak için sabırsızlanıyoruz..."
             required
@@ -53,7 +55,7 @@ export default function FeedbackForm() {
         </div>
         <div className="flex flex-col gap-0.5">
           <div className="flex justify-between items-center">
-            <header className="text-lg font-medium text-orange-200">
+            <header className="text-lg font-medium text-orange-200 titleFont">
               Mesajınız
             </header>
             <span className="text-sm text-gray-400">

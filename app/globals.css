@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Agu+Display&family=Caveat:wght@400..700&family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -20,10 +22,23 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.titleFont,
+.home-header {
+  font-family: "Agu Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "MORF" 0;
+}
+
 input,
 textarea,
 button {
   outline: none;
+}
+
+.welcomeText {
+  @apply text-[66px] font-medium italic flex items-center gap-1.5 px-5;
 }
 
 .home {
@@ -31,11 +46,12 @@ button {
 }
 
 .navbar {
-  @apply flex items-center justify-between h-16 bg-gradient-to-l to-orange-400 from-orange-700 rounded-full px-5;
+  @apply flex items-center justify-between h-[70px] bg-gradient-to-l to-orange-300 from-orange-800 rounded-full px-5;
 }
 
 .navbarLink {
-  @apply text-2xl font-medium italic flex items-center gap-1.5 bg-gray-950 hover:bg-gray-900 duration-200 rounded-full px-5;
+  font-family: "Caveat", serif;
+  @apply text-6xl font-extrabold italic flex items-center text-black duration-200 rounded-full px-5;
 }
 
 .home-header {
@@ -76,9 +92,15 @@ button {
   @apply text-3xl font-medium text-white;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 426px) {
+  .navbar {
+    @apply px-1.5 h-12;
+  }
+  .welcomeText {
+    @apply text-5xl;
+  }
   .navbarLink {
-    @apply text-xl w-full justify-center;
+    @apply text-3xl w-full justify-center;
   }
 }
 
