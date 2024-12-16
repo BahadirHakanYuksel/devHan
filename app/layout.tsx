@@ -3,7 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 
 export const metadata: Metadata = {
-  title: "Developer Hanı Birthadays",
+  title: "Developer Hanı",
   description: "Don't forget your friends birthdays!",
 };
 

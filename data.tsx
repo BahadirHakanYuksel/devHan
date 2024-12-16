@@ -86,7 +86,7 @@ let DATA: friend[] = [
     surname: "İNAL",
     age: calculateAge("2003-05-26"),
     birthdayDate: "26-05-2004",
-    profilePhoto: "/images/abdulkadir.png",
+    profilePhoto: "/images/apo.jpg",
     department: "Bilgisayar Mühendisi",
   },
   {
