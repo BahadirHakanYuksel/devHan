@@ -1,5 +1,3 @@
-import { nanoid } from "nanoid";
-
 export class friend {
   id: string;
   name: string;
@@ -8,6 +6,7 @@ export class friend {
   birthdayDate: string;
   profilePhoto: string = "";
   department: string = "Handaş";
+  actionNumber: number = 0;
   constructor(
     id: string,
     name: string,
@@ -15,7 +14,8 @@ export class friend {
     age: number,
     birthdayDate: string,
     profilePhoto?: string,
-    department?: string
+    department?: string,
+    actionNumber?: number
   ) {
     this.id = id;
     this.name = name;
@@ -24,8 +24,22 @@ export class friend {
     this.birthdayDate = birthdayDate;
     if (profilePhoto) this.profilePhoto = profilePhoto;
     if (department) this.department = department;
+    if (actionNumber) this.actionNumber = actionNumber;
+  }
+  addActionNumber() {
+    this.actionNumber++;
   }
 }
+export const navMenu = [
+  {
+    title: "Etkinlikler",
+    path: "/events",
+  },
+  {
+    title: "Feedbacks",
+    path: "/feedbacks",
+  },
+];
 
 const calculateAge = (birthdayDate: string): number => {
   const today = new Date();
@@ -53,69 +67,69 @@ const addFriend = (
 };
 
 let DATA: friend[] = [
-  {
-    id: nanoid(),
-    name: "Ersin Emre",
-    surname: "AKCA",
-    age: calculateAge("2003-08-08"),
-    birthdayDate: "08-08-2003",
-    profilePhoto: "/images/ersin.png",
-    department: "Elektrik-Elektronik Mühendisi",
-  },
-  {
-    id: nanoid(),
-    name: "Sadiye Canan",
-    surname: "EKENTOK",
-    age: calculateAge("2003-07-03"),
-    birthdayDate: "03-07-2003",
-    profilePhoto: "/images/canan.jpg",
-    department: "Bilgisayar Mühendisi",
-  },
-  {
-    id: nanoid(),
-    name: "Burak",
-    surname: "ERGÜVEN",
-    age: calculateAge("2003-03-19"),
-    birthdayDate: "19-03-2003",
-    profilePhoto: "/images/burak.png",
-    department: "Bilgisayar Mühendisi",
-  },
-  {
-    id: nanoid(),
-    name: "Abdulkadir",
-    surname: "İNAL",
-    age: calculateAge("2003-05-26"),
-    birthdayDate: "26-05-2004",
-    profilePhoto: "/images/apo.jpg",
-    department: "Bilgisayar Mühendisi",
-  },
-  {
-    id: nanoid(),
-    name: "Bahadır Hakan",
-    surname: "YÜKSEL",
-    age: calculateAge("2003-04-02"),
-    birthdayDate: "02-04-2003",
-    profilePhoto: "/images/bhy.jpg",
-    department: "Bilgisayar Mühendisi",
-  },
-  {
-    id: nanoid(),
-    name: "Umut",
-    surname: "YILDIZ",
-    age: calculateAge("2004-08-23"),
-    birthdayDate: "23-08-2004",
-    profilePhoto: "/images/umut.jpg",
-    department: "Tıbbi Laboratuvar Teknikeri",
-  },
-  {
-    id: nanoid(),
-    name: "Ensar",
-    surname: "",
-    age: calculateAge("2004-10-05"),
-    birthdayDate: "05-10-2004",
-    profilePhoto: "/images/ensar.jpg",
-    department: "Elektrik-Elektronik Mühendisi",
-  },
+  new friend(
+    "66420",
+    "Ersin Emre",
+    "AKCA",
+    calculateAge("2003-08-08"),
+    "08-08-2003",
+    "/images/ersin.png",
+    "Elektrik-Elektronik Mühendisi"
+  ),
+  new friend(
+    "66421",
+    "Sadiye Canan",
+    "EKENTOK",
+    calculateAge("2003-07-03"),
+    "03-07-2003",
+    "/images/canan.jpg",
+    "Bilgisayar Mühendisi"
+  ),
+  new friend(
+    "66422",
+    "Burak",
+    "ERGÜVEN",
+    calculateAge("2003-03-19"),
+    "19-03-2003",
+    "/images/burak.png",
+    "Bilgisayar Mühendisi"
+  ),
+  new friend(
+    "66423",
+    "Abdulkadir",
+    "İNAL",
+    calculateAge("2003-05-26"),
+    "26-05-2004",
+    "/images/apo.jpg",
+    "Bilgisayar Mühendisi"
+  ),
+  new friend(
+    "66424",
+    "Bahadır Hakan",
+    "YÜKSEL",
+    calculateAge("2003-04-02"),
+    "02-04-2003",
+    "/images/bhy.jpg",
+    "Bilgisayar Mühendisi"
+  ),
+  new friend(
+    "66425",
+    "Umut",
+    "YILDIZ",
+    calculateAge("2004-08-23"),
+    "23-08-2004",
+    "/images/umut.jpg",
+    "Tıbbi Laboratuvar Teknikeri"
+  ),
+  new friend(
+    "66426",
+    "Ensar",
+    "",
+    calculateAge("2004-10-05"),
+    "05-10-2004",
+    "/images/ensar.jpg",
+    "Elektrik-Elektronik Mühendisi"
+  ),
 ];
 export default DATA;
 

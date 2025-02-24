@@ -8,7 +8,6 @@ import classNames from "classnames";
 export default function Home() {
   return (
     <div className="home">
-      <UpdateMain />
       <header className="home-header">
         {welcomeTextArray.map((text, index) => (
           <p

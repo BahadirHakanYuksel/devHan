@@ -1,0 +1,22 @@
+.eventOperationCard {
+  @apply absolute w-[1100px]  bg-opacity-30 left-1/2 -translate-x-1/2 top-40 z-10 px-7 flex flex-col;
+}
+
+.eop_main {
+  @apply w-full bg-black border-2 border-solid border-l-[#888] border-t-[#777] border-r-[#666] border-b-[#555] p-8 rounded-lg gap-5;
+  display: grid;
+  grid-template-columns: 320px auto;
+}
+
+.inputClass {
+  @apply w-full h-12 bg-[#222] border-2 border-solid border-[#555] rounded-lg text-white text-base p-2 focus:border-[#888];
+  &:focus + .inputHeader {
+    @apply border-blue-400 text-blue-50 -top-6;
+  }
+}
+
+.inputHeader {
+  @apply bg-black px-2.5 py-0.5 text-base flex items-center
+    justify-center absolute h-8 border-2 border-solid border-[#555] rounded-full
+    duration-300 pointer-events-none -top-6 right-2;
+}

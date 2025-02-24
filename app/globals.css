@@ -46,12 +46,12 @@ button {
 }
 
 .navbar {
-  @apply flex items-center justify-between h-[70px] bg-gradient-to-l to-orange-300 from-orange-800 rounded-full px-5;
+  @apply flex items-center justify-center h-[70px] bg-gradient-to-l to-[#fdbb7480] from-[#9a341280] rounded-full px-5 sticky top-5 z-10 backdrop-blur-lg;
 }
 
 .navbarLink {
   font-family: "Caveat", serif;
-  @apply text-6xl font-extrabold italic flex items-center text-black duration-200 rounded-full px-5;
+  @apply text-6xl font-extrabold italic flex items-center text-transparent bg-gradient-to-br from-orange-300 to-white bg-clip-text duration-200 rounded-full px-5;
 }
 
 .home-header {
@@ -101,6 +101,17 @@ button {
   }
   .navbarLink {
     @apply text-3xl w-full justify-center;
+  }
+}
+
+.dhButtonDefault {
+  font-family: "Caveat", serif !important;
+  @apply text-xl font-extrabold bg-orange-700 px-2.5 py-1.5 rounded-full hover:bg-orange-600 flex items-center gap-2.5 justify-between hover:duration-300 hover:scale-105 active:bg-orange-400;
+  &:hover i {
+    @apply text-blue-800;
+  }
+  &:active i {
+    @apply text-orange-400;
   }
 }
 

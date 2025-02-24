@@ -15,6 +15,8 @@ interface Friend {
   birthdayDate: string;
   profilePhoto: string;
   department: string;
+  actionNumber: number;
+  addActionNumber: () => void;
 }
 
 interface Params {
