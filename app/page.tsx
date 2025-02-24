@@ -1,7 +1,6 @@
 import FeedbackForm from "@/components/feedbackForm";
 import FeedbackList from "@/components/feedBackList";
 import Team from "@/components/team";
-import UpdateMain from "@/components/UpdateMain";
 import DATA, { welcomeTextArray } from "@/data";
 import classNames from "classnames";
 

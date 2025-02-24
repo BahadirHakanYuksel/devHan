@@ -1,5 +1,6 @@
 import {
   closeTheEventOperationCard,
+  Event,
   EventBuilder,
   eventCategories,
 } from "@/lib/event";
@@ -21,10 +22,10 @@ interface eventFormInterface {
 
 export default function EventOperationCard({
   setOperationIsOpen,
-  setEvents,
+  setMyEvents,
 }: {
   setOperationIsOpen: (value: boolean) => void;
-  setEvents: (events: any) => void;
+  setMyEvents: (events: ((prevEvents: Event[]) => Event[]) | Event[]) => void;
 }) {
   const [eventForm, setEventForm] = useState<eventFormInterface>({
     name: "",
@@ -81,7 +82,7 @@ export default function EventOperationCard({
       .setCreator(eventForm.creatorName)
       .build();
 
-    setEvents((prevEvents: any) => [...prevEvents, event]);
+    setMyEvents((prevEvents: Event[]) => [...prevEvents, event]);
   };
 
   return (

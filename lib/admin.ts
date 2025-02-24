@@ -1,5 +1,5 @@
 import { friend } from "@/data";
-import { Event, EventCategoriesClass } from "./event";
+import { Event } from "./event";
 
 export class Admin {
   private friends: friend[] = [];

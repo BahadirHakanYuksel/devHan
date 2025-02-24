@@ -15,7 +15,7 @@ export default function EventPage() {
   };
 
   const [EVENT, setEVENT] = useState<Event | null>(null);
-  const [EVENTS, setEVENTS] = useState<Event[]>([]);
+  const [EVENTS, setMyEvents] = useState<Event[]>([]);
 
   useEffect(() => {
     if (EVENT === null) {
@@ -36,7 +36,7 @@ export default function EventPage() {
     <div className="py-20 min-h-screen px-5 relative">
       {eventOperationIsOpen && (
         <EventOperationCard
-          setEvents={setEVENTS}
+          setMyEvents={setMyEvents}
           setOperationIsOpen={setEventOperationIsOpen}
         />
       )}
