@@ -5,7 +5,7 @@ import React from "react";
 import { FaRegUser } from "react-icons/fa";
 import Department from "./department";
 import { calculateAge, Friend, friend } from "@/data";
-import { dateTimeConvertToDate } from "@/lib/app";
+import { allFirstLetterCapitalize, dateTimeConvertToDate } from "@/lib/app";
 
 export default function FriendCard(data: Friend) {
   const user: friend = new friend(
@@ -46,8 +46,7 @@ export default function FriendCard(data: Friend) {
       </div>
       <div className="flex flex-col gap-0.5">
         <p className="fcNameSurname">
-          <span>{user?.name}</span>
-          <span>{user?.surname}</span>
+          {allFirstLetterCapitalize(user.name + " " + user.surname)}
         </p>
         {user.department && (
           <Department size="small">{user.department}</Department>

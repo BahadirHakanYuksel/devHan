@@ -6,7 +6,7 @@ import { FaUser } from "react-icons/fa";
 import Department from "@/components/department";
 import Team from "@/components/team";
 import { calculateAge, Friend, friend } from "@/data";
-import { dateTimeConvertToDate } from "@/lib/app";
+import { allFirstLetterCapitalize, dateTimeConvertToDate } from "@/lib/app";
 // import { useSelector } from "react-redux";
 
 interface Params {
@@ -129,7 +129,9 @@ export default function FriendDetailPage({
         )}
       </div>
       <div className="friend-name">
-        {user?.name} {user?.surname}
+        {allFirstLetterCapitalize(
+          user ? user?.name + " " + user?.surname : "no name"
+        )}
       </div>
       <Department size="large">{user ? user?.department : "Handaş"}</Department>
       <div className="flex flex-col gap-2.5 h-[52px]">
