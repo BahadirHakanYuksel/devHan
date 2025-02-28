@@ -43,6 +43,10 @@ export default function Navbar() {
         alert("Çıkış başarılı!");
         st_logoutFront();
         router.push("/");
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       } else {
         throw new Error("Çıkış sırasında hata");
       }
@@ -52,8 +56,6 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    console.log("st_user_hook", st_user_hook);
-
     if (st_user !== null) {
       setActiveMenuItem({
         title: "Profil",

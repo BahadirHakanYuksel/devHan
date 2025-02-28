@@ -15,18 +15,23 @@ export default function FriendCard(data: Friend) {
     calculateAge(dateTimeConvertToDate(data.birthdayDate.toString())),
     dateTimeConvertToDate(data.birthdayDate.toString()),
     data.profilePhoto,
-    data.department
+    data.department,
+    data?.actionNumber,
+    data?.email,
+    data?.password,
+    data?.gender,
+    data?.username
   );
 
   return (
     <Link
-      href={`/${convertURLForm(user.name.toLowerCase().toString())}`}
+      href={`/${convertURLForm(user?.username?.toLowerCase().toString() || "")}`}
       className="friendCard"
     >
       <div className="fcImageDiv">
         {user.profilePhoto !== "" ? (
           <Image
-            src={user.profilePhoto}
+            src={`/images/${user.profilePhoto}`}
             alt={`${user.name} ${user.surname} Profil 
             Resmi`}
             width={100}

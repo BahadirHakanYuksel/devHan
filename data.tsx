@@ -1,5 +1,4 @@
 export class friend implements Friend {
-  username?: string;
   id: string;
   name: string;
   surname: string;
@@ -12,6 +11,7 @@ export class friend implements Friend {
   email: string = "";
   password?: string = "";
   gender: string = "";
+  username?: string = "";
   constructor(
     id: string,
     name: string,
@@ -114,7 +114,7 @@ let DATA: friend[] = [
     "AKCA",
     calculateAge("2003-08-08"),
     "2003-08-08",
-    "/images/ersin.png",
+    "ersin-emre-akca.png",
     "Elektrik-Elektronik Mühendisi"
   ),
   new friend(
@@ -123,7 +123,7 @@ let DATA: friend[] = [
     "EKENTOK",
     calculateAge("2003-07-03"),
     "2003-07-03",
-    "/images/canan.jpg",
+    "sadiye-canan-ekentok.jpg",
     "Bilgisayar Mühendisi"
   ),
   new friend(
@@ -132,7 +132,7 @@ let DATA: friend[] = [
     "ERGÜVEN",
     calculateAge("2003-03-19"),
     "2003-03-19",
-    "/images/burak.png",
+    "burak-erguven.png",
     "Bilgisayar Mühendisi"
   ),
   new friend(
@@ -141,25 +141,25 @@ let DATA: friend[] = [
     "İNAL",
     calculateAge("2003-05-26"),
     "2003-05-26",
-    "/images/apo.jpg",
+    "abdulkadir-inal.jpg",
     "Bilgisayar Mühendisi"
   ),
-  new friend(
-    "66424",
-    "Bahadır Hakan",
-    "YÜKSEL",
-    calculateAge("2003-04-02"),
-    "2003-04-02",
-    "/images/bhy.jpg",
-    "Bilgisayar Mühendisi"
-  ),
+  // new friend(
+  //   "66424",
+  //   "Bahadır Hakan",
+  //   "YÜKSEL",
+  //   calculateAge("2003-04-02"),
+  //   "2003-04-02",
+  //   "bahadir-hakan-yuksel.jpg",
+  //   "Bilgisayar Mühendisi"
+  // ),
   new friend(
     "66425",
     "Umut",
     "YILDIZ",
     calculateAge("2004-08-23"),
     "2004-08-23",
-    "/images/umut.jpg",
+    "umut.jpg",
     "Tıbbi Laboratuvar Teknikeri"
   ),
   new friend(
@@ -168,7 +168,7 @@ let DATA: friend[] = [
     "",
     calculateAge("2004-10-05"),
     "2004-10-05",
-    "/images/ensar.jpg",
+    "ensar.jpg",
     "Elektrik-Elektronik Mühendisi"
   ),
 ];

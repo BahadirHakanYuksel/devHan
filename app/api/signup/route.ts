@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import { prisma } from "@/lib/prismadb";
+import DATA from "@/data";
+import { convertURLForm } from "@/lib/friend";
 
 export async function POST(request: Request) {
   try {
@@ -39,8 +41,26 @@ export async function POST(request: Request) {
     // Şifreyi hashle
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    const otoUploadPhoto = (name: string, surname: string) => {
+      const isHere = DATA.filter(
+        (db) => db.name === name && db.surname === surname
+      );
+
+      if (isHere) {
+        const imgName = convertURLForm(name + " " + surname);
+        const dotName =
+          (name + " " + surname).toLowerCase() === "ersin emre akca" ||
+          (name + " " + surname).toLowerCase() === "burak ergüven"
+            ? ".png"
+            : ".jpg";
+        return imgName + dotName;
+      }
+    };
+
+    const img_url = otoUploadPhoto(name, surname);
+
     // Kullanıcı oluştur
-    prisma.friends.create({
+    const user = await prisma.friends.create({
       data: {
         name: name,
         surname: surname,
@@ -48,7 +68,8 @@ export async function POST(request: Request) {
         email: email,
         password: hashedPassword,
         birthdayDate: birthdayDate,
-        profilePhoto: profilePhoto,
+        profilePhoto:
+          img_url !== null && img_url !== undefined ? img_url : profilePhoto,
         department: department,
         gender: gender,
         actionNumber: 0, // or any default value

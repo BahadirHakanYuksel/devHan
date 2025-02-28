@@ -38,12 +38,15 @@ export default function LoginForm({
 
       if (data.success) {
         // JWT token veya session yönetimi
-        router.push("/");
         localStorage.setItem("st_user", JSON.stringify(data.user));
         st_loginFront(data.user);
         alert("Giriş başarılı!");
         setLoginParams({ email: "", password: "" });
         router.push("/");
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       }
     } catch (error) {
       console.error("Giriş hatası:", error);
