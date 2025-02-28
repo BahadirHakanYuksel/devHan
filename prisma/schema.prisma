@@ -20,7 +20,7 @@ model Friends {
   surname         String     @db.VarChar(50)
   birthdayDate    DateTime?                       // Tarih için DateTime
   profilePhoto    String     @default("default.jpg")
-  department      String     @db.VarChar(30)
+  department      String     @db.VarChar(60)
   actionNumber    Int        @default(0)
   gender          String     // Enum kullanımı
   eventsAttended  String[]   @db.VarChar(36)      // UUID formatı için

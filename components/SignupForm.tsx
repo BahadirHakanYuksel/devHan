@@ -1,7 +1,7 @@
 "use client";
 
 import classNames from "classnames";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function SignupForm({
   setActiveState,
@@ -46,6 +46,7 @@ export default function SignupForm({
 
   const signup = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log(signupParams.department);
 
     try {
       const response = await fetch("/api/signup", {
@@ -53,7 +54,17 @@ export default function SignupForm({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(signupParams),
+        body: JSON.stringify({
+          email: signupParams.email,
+          password: signupParams.password,
+          name: signupParams.name,
+          surname: signupParams.surname,
+          birthdayDate: new Date(signupParams.birthdayDate),
+          department: signupParams.department.toString(),
+          profilePhoto: signupParams.profilePhoto,
+          gender: signupParams.gender,
+          username: signupParams.username,
+        }),
       });
 
       // HTTP hata kontrolü
@@ -90,11 +101,16 @@ export default function SignupForm({
     }
   };
 
+  useEffect(() => {
+    console.log(signupParams.department);
+    console.log(typeof signupParams.department);
+  }, [signupParams.department]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const { name, value } = e.target;
     if (name == "birthdayDate")
-      setSignupParams({ ...signupParams, [name]: new Date(value) });
+      setSignupParams({ ...signupParams, [name]: value });
     else setSignupParams({ ...signupParams, [name]: value });
   };
 
