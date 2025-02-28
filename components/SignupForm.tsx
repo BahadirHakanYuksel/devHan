@@ -55,15 +55,15 @@ export default function SignupForm({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email: signupParams.email,
-          password: signupParams.password,
-          name: signupParams.name,
-          surname: signupParams.surname,
+          email: signupParams.email.trim(),
+          password: signupParams.password.trim(),
+          name: signupParams.name.trim(),
+          surname: signupParams.surname.trim(),
           birthdayDate: new Date(signupParams.birthdayDate),
           department: signupParams.department.toString(),
-          profilePhoto: signupParams.profilePhoto,
-          gender: signupParams.gender,
-          username: signupParams.username,
+          profilePhoto: signupParams.profilePhoto.trim(),
+          gender: signupParams.gender.trim(),
+          username: signupParams.username.trim(),
         }),
       });
 

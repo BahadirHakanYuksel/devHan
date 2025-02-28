@@ -59,7 +59,7 @@ export default function Navbar() {
     if (st_user !== null) {
       setActiveMenuItem({
         title: "Profil",
-        path: `/${convertURLForm(st_user.name.toString())}`,
+        path: `/${convertURLForm(st_user?.username?.toString() || "")}`,
       });
     } else {
       setActiveMenuItem({ title: "Giriş Yap - Kayıt Ol", path: "/register" });

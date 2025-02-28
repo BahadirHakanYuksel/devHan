@@ -49,8 +49,8 @@ export async function POST(request: Request) {
       if (isHere) {
         const imgName = convertURLForm(name + " " + surname);
         const dotName =
-          (name + " " + surname).toLowerCase() === "ersin emre akca" ||
-          (name + " " + surname).toLowerCase() === "burak ergüven"
+          (name + " " + surname).toLowerCase().trim() === "ersin emre akca" ||
+          (name + " " + surname).toLowerCase().trim() === "burak ergüven"
             ? ".png"
             : ".jpg";
         return imgName + dotName;
