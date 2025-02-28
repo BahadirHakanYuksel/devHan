@@ -60,7 +60,7 @@ export async function POST(request: Request) {
     const img_url = otoUploadPhoto(name, surname);
 
     // Kullanıcı oluştur
-    const user = await prisma.friends.create({
+    await prisma.friends.create({
       data: {
         name: name,
         surname: surname,
@@ -79,7 +79,7 @@ export async function POST(request: Request) {
     // Şifreyi response'tan çıkar
     // const { password: _, ...safeUser } = user;
 
-    return NextResponse.json({ status: 201, id: user.id });
+    return NextResponse.json({ status: 201 });
   } catch (error) {
     console.error("Kayıt hatası:", error);
     return NextResponse.json({ error: "Sunucu hatası" }, { status: 500 });
