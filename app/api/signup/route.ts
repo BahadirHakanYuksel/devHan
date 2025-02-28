@@ -60,7 +60,7 @@ export async function POST(request: Request) {
     const img_url = otoUploadPhoto(name, surname);
 
     // Kullanıcı oluştur
-    const user = await prisma.friends.create({
+    prisma.friends.create({
       data: {
         name: name,
         surname: surname,
