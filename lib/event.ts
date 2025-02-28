@@ -120,9 +120,11 @@ interface EventProps {
   googleMapsLink: string | null;
   category: EventCategory;
   eventImg: string | null;
-  participants: friend[];
+  participants: string[];
   reactions: Reaction[];
   creatorName: string | null; // Provide a default value
+  createdAt: Date | null;
+  updatedAt: Date | null;
 }
 
 export class Event implements EventProps {
@@ -133,9 +135,11 @@ export class Event implements EventProps {
   googleMapsLink: string | null;
   category: EventCategory;
   eventImg: string | null;
-  participants: friend[];
+  participants: string[];
   reactions: Reaction[];
   creatorName: string | null;
+  createdAt: Date | null;
+  updatedAt: Date | null;
 
   constructor(props: Partial<EventProps> = {}) {
     this.id = props.id || "default-id";
@@ -152,14 +156,17 @@ export class Event implements EventProps {
     this.participants = props.participants || [];
     this.reactions = props.reactions || [];
     this.creatorName = props.creatorName || null;
+    this.createdAt = props.createdAt || new Date();
+    this.updatedAt = props.updatedAt || null;
   }
 
-  addParticipant(participant: friend): void {
-    this.participants.push(participant);
+  addParticipant(participantId: string): void {
+    if (this.participants.find((p) => p === participantId)) return;
+    this.participants.push(participantId);
   }
 
   removeParticipant(participantId: string): void {
-    this.participants = this.participants.filter((p) => p.id !== participantId);
+    this.participants = this.participants.filter((p) => p !== participantId);
   }
 
   addReaction(reaction: Reaction): void {
@@ -179,9 +186,11 @@ export class EventBuilder implements EventProps {
   googleMapsLink: string | null = null;
   category: EventCategory = { title: "", emo: "", color: "" };
   eventImg: string | null = null;
-  participants: friend[] = [];
+  participants: string[] = [];
   reactions: Reaction[] = [];
   creatorName: string = "";
+  createdAt: Date | null = new Date();
+  updatedAt: Date | null = null;
   // Builder için set metodları
   setId(): this {
     const id = generateRandomId();
@@ -224,7 +233,7 @@ export class EventBuilder implements EventProps {
     return this;
   }
 
-  setParticipants(participants: friend[]): this {
+  setParticipants(participants: string[]): this {
     this.participants = participants;
     return this;
   }

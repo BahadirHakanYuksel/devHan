@@ -1,12 +1,17 @@
-export class friend {
+export class friend implements Friend {
+  username?: string;
   id: string;
   name: string;
   surname: string;
-  age: number;
+  age?: number;
   birthdayDate: string;
   profilePhoto: string = "";
   department: string = "Handaş";
   actionNumber: number = 0;
+  eventsAttended: string[] = [];
+  email: string = "";
+  password?: string = "";
+  gender: string = "";
   constructor(
     id: string,
     name: string,
@@ -15,19 +20,40 @@ export class friend {
     birthdayDate: string,
     profilePhoto?: string,
     department?: string,
-    actionNumber?: number
+    actionNumber?: number,
+    email?: string,
+    password?: string,
+    gender?: string,
+    username?: string
   ) {
     this.id = id;
     this.name = name;
     this.surname = surname;
     this.age = age;
     this.birthdayDate = birthdayDate;
+
     if (profilePhoto) this.profilePhoto = profilePhoto;
     if (department) this.department = department;
     if (actionNumber) this.actionNumber = actionNumber;
+    if (email) this.email = email;
+    if (password) this.password = password;
+    if (gender) this.gender = gender;
+    if (username) this.username = username;
   }
   addActionNumber() {
     this.actionNumber++;
+  }
+  addEvent(eventId: string) {
+    if (this.eventsAttended.includes(eventId)) return;
+    this.eventsAttended.push(eventId);
+  }
+  removeEvent(eventId: string) {
+    this.eventsAttended = this.eventsAttended.filter(
+      (event) => event !== eventId
+    );
+  }
+  setEmail(email: string) {
+    this.email = email;
   }
 }
 export const navMenu = [
@@ -41,15 +67,30 @@ export const navMenu = [
   },
 ];
 
-const calculateAge = (birthdayDate: string): number => {
-  const today = new Date();
-  const birthDate = new Date(birthdayDate);
-  let age = today.getFullYear() - birthDate.getFullYear();
-  const month = today.getMonth() - birthDate.getMonth();
-  if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
-    age--;
+export const calculateAge = (birthdateStr: string): number => {
+  // Tarihi parçalara ayır (GG.AA.YYYY formatında)
+  const [gun, ay, yil] = birthdateStr.split(".").map(Number);
+
+  // JavaScript Date nesnesi (aylar 0-11 arası olduğu için ay - 1)
+  const dogumTarihi = new Date(yil, ay - 1, gun);
+
+  const bugun = new Date();
+
+  // Temel yaş hesaplama
+  let yas = bugun.getFullYear() - dogumTarihi.getFullYear();
+
+  // Doğum günü kontrolü (ay ve gün karşılaştırması)
+  const buAy = bugun.getMonth();
+  const buGun = bugun.getDate();
+
+  if (
+    buAy < dogumTarihi.getMonth() ||
+    (buAy === dogumTarihi.getMonth() && buGun < dogumTarihi.getDate())
+  ) {
+    yas--;
   }
-  return age;
+
+  return yas;
 };
 
 const addFriend = (
@@ -72,7 +113,7 @@ let DATA: friend[] = [
     "Ersin Emre",
     "AKCA",
     calculateAge("2003-08-08"),
-    "08-08-2003",
+    "2003-08-08",
     "/images/ersin.png",
     "Elektrik-Elektronik Mühendisi"
   ),
@@ -81,7 +122,7 @@ let DATA: friend[] = [
     "Sadiye Canan",
     "EKENTOK",
     calculateAge("2003-07-03"),
-    "03-07-2003",
+    "2003-07-03",
     "/images/canan.jpg",
     "Bilgisayar Mühendisi"
   ),
@@ -90,7 +131,7 @@ let DATA: friend[] = [
     "Burak",
     "ERGÜVEN",
     calculateAge("2003-03-19"),
-    "19-03-2003",
+    "2003-03-19",
     "/images/burak.png",
     "Bilgisayar Mühendisi"
   ),
@@ -99,7 +140,7 @@ let DATA: friend[] = [
     "Abdulkadir",
     "İNAL",
     calculateAge("2003-05-26"),
-    "26-05-2004",
+    "2003-05-26",
     "/images/apo.jpg",
     "Bilgisayar Mühendisi"
   ),
@@ -108,7 +149,7 @@ let DATA: friend[] = [
     "Bahadır Hakan",
     "YÜKSEL",
     calculateAge("2003-04-02"),
-    "02-04-2003",
+    "2003-04-02",
     "/images/bhy.jpg",
     "Bilgisayar Mühendisi"
   ),
@@ -117,7 +158,7 @@ let DATA: friend[] = [
     "Umut",
     "YILDIZ",
     calculateAge("2004-08-23"),
-    "23-08-2004",
+    "2004-08-23",
     "/images/umut.jpg",
     "Tıbbi Laboratuvar Teknikeri"
   ),
@@ -126,7 +167,7 @@ let DATA: friend[] = [
     "Ensar",
     "",
     calculateAge("2004-10-05"),
-    "05-10-2004",
+    "2004-10-05",
     "/images/ensar.jpg",
     "Elektrik-Elektronik Mühendisi"
   ),
@@ -137,3 +178,20 @@ export const welcomeTextArray = [
   "Kodlar uçuşur, kahve taşar,",
   "Developer Hanı’nda sabahı bulan yaşar!",
 ];
+
+export interface Friend {
+  id: string;
+  name: string;
+  surname: string;
+  age?: number;
+  birthdayDate: string | Date;
+  profilePhoto: string;
+  department: string;
+  actionNumber: number;
+  addActionNumber?: () => void;
+  eventsAttended: string[];
+  email: string;
+  password?: string;
+  gender: string;
+  username?: string;
+}

@@ -6,18 +6,9 @@ import Image from "next/image";
 import { FaUser } from "react-icons/fa";
 import Department from "@/components/department";
 import Team from "@/components/team";
-
-interface Friend {
-  id: string;
-  name: string;
-  surname: string;
-  age: number;
-  birthdayDate: string;
-  profilePhoto: string;
-  department: string;
-  actionNumber: number;
-  addActionNumber: () => void;
-}
+import { calculateAge, friend } from "@/data";
+import { dateTimeConvertToDate } from "@/lib/app";
+// import { useSelector } from "react-redux";
 
 interface Params {
   name: string;
@@ -28,9 +19,12 @@ export default function FriendDetailPage({
 }: {
   params: Promise<Params>;
 }): JSX.Element {
-  const [user, setUser] = useState<Friend | null>(null);
-  const [filteredList, setFilteredList] = useState<Friend[] | null>(null);
+  const [user, setUser] = useState<friend | null>(null);
+  const [filteredList, setFilteredList] = useState<friend[] | null>(null);
   const [name, setName] = useState<string | null>(null);
+  // const [isYou, setIsYou] = useState(false);
+
+  // const { st_user } = useSelector((state: any) => state.AppStore);
 
   useEffect(() => {
     const fetchParams = async () => {
@@ -47,10 +41,23 @@ export default function FriendDetailPage({
 
   useEffect(() => {
     if (name) {
-      const friend = findFriend(name); // Find the friend based on the 'name'
-      if (friend) {
-        setUser(friend);
-        setFilteredList(filteredFriends(friend.name)); // Filter the friends list
+      const data = findFriend(name); // Find the friend based on the 'name'
+      console.log(name);
+
+      if (data) {
+        const new_user: friend = new friend(
+          data.id,
+          data.name,
+          data.surname,
+          calculateAge(dateTimeConvertToDate(data.birthdayDate)),
+          dateTimeConvertToDate(data.birthdayDate),
+          data.profilePhoto,
+          data.department
+        );
+        setUser(new_user);
+        // st_user?.name === friend?.name ? setIsYou(true) : setIsYou(false);
+
+        setFilteredList(filteredFriends(data.name)); // Filter the friends list
       } else {
         throw new Error("Friend not found");
       }
@@ -59,6 +66,8 @@ export default function FriendDetailPage({
 
   return (
     <div className="p-10 flex flex-col gap-5 items-center">
+      {/* {isYou && <h1 className="text-3xl font-bold text-white">Profil</h1>} */}
+
       <div className="w-[220px] h-[220px] rounded-full flex items-center justify-center overflow-hidden border-2 border-solid border-gray-400 text-7xl">
         {user?.profilePhoto ? (
           <Image
@@ -75,21 +84,21 @@ export default function FriendDetailPage({
       <div className="friend-name">
         {user?.name} {user?.surname}
       </div>
-      <Department size="large">{user?.department}</Department>
+      <Department size="large">{user ? user?.department : "Handaş"}</Department>
       <div className="flex flex-col gap-2.5 h-[52px]">
-        <div className="flex items-center justify-center gap-2.5">
+        <section className="flex items-center justify-center gap-2.5">
           <p className="birthday-text">Yaş</p>
           <p className="birthday-text-value">{user?.age}</p>
-        </div>
-        <div className="flex items-center justify-center gap-2.5">
+        </section>
+        <section className="flex items-center justify-center gap-2.5">
           <p className="birthday-text">Doğum Günü</p>
-          <p className="birthday-text-value">{user?.birthdayDate}</p>
-        </div>
+          <p className="birthday-text-value">{user?.birthdayDate.toString()}</p>
+        </section>
       </div>
 
       {filteredList && (
         <div className="mt-44">
-          {<Team data={filteredList} page="FRIEND_DETAIL" />}
+          {<Team data={filteredList} page="FRIEND_DETAIL" db_data={null} />}
         </div>
       )}
     </div>

@@ -1,3 +1,5 @@
+import { AppStoreProps } from "@/stores/app";
+
 export const createSlug = (title: string): string => {
   return title
     .toLowerCase() // Küçük harfe çevir
@@ -19,3 +21,13 @@ export const generateRandomId = (length: number = 8): string => {
   }
   return result;
 };
+
+export const dateTimeConvertToDate = (dateTime: string): string => {
+  dateTime = dateTime.split("T")[0];
+  const date = dateTime.split("-");
+  return `${date[2]}.${date[1]}.${date[0]}`;
+};
+
+export interface StoreProps {
+  AppStore: AppStoreProps;
+}

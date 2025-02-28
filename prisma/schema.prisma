@@ -13,3 +13,34 @@ model Feedback {
   createdAt DateTime @default(now())
   name      String   @default("")
 }
+
+model Friends {
+  id              String     @id @default(uuid()) @unique
+  name            String     @db.VarChar(50)      // Boyut sınırlaması
+  surname         String     @db.VarChar(50)
+  birthdayDate    DateTime?                       // Tarih için DateTime
+  profilePhoto    String     @default("default.jpg")
+  department      String     @db.VarChar(30)
+  actionNumber    Int        @default(0)
+  gender          String     // Enum kullanımı
+  eventsAttended  String[]   @db.VarChar(36)      // UUID formatı için
+  createdAt       DateTime   @default(now())
+  email           String     @unique @db.VarChar(100)
+  password        String     @db.VarChar(100)     // Hash'li şifre için
+  username        String     @unique @db.VarChar(50) @default("")
+}
+
+model Events {
+  id             String   @id @default(uuid())
+  name    String
+  description    String @default("Lafı uzatmaya gerek yok, katılın ve eğlenin!")
+  dateTime          DateTime
+  googleMapsLink    String @default("")
+  createdAt         DateTime @default(now())
+  uploadedAt        DateTime
+  category          String
+  eventImg          String @default("")
+  participants      String[] @default([])
+  reactions         String[]  @default([])
+  creatorName           String
+}

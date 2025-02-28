@@ -30,6 +30,12 @@ export default function EventCard({ event }: cardInterface) {
     },
   ];
 
+  const attendAction = () => {
+    event.addParticipant("user_id");
+
+    console.log("katıldı", event.participants);
+  };
+
   const slug = createSlug(`${event.name}-${event.id}`);
   return (
     <div className="bg-[#5555] rounded-lg p-3 flex flex-col gap-3 relative">
@@ -102,7 +108,10 @@ export default function EventCard({ event }: cardInterface) {
           >
             İncele
           </Link>
-          <button className="bg-orange-500 bg-opacity-70 hover:bg-opacity-100 duration-200 rounded-sm w-32 flex items-center justify-center h-8">
+          <button
+            onClick={attendAction}
+            className="bg-orange-500 bg-opacity-70 hover:bg-opacity-100 duration-200 rounded-sm w-32 flex items-center justify-center h-8"
+          >
             Katıl
           </button>
         </div>
