@@ -2,18 +2,15 @@
 
 import FeedbackForm from "@/components/feedbackForm";
 import FeedbackList from "@/components/feedBackList";
-import FriendListAbs from "@/components/FriendListAbs";
 import Team from "@/components/team";
 import DATA, { Friend, welcomeTextArray } from "@/data";
-import { StoreProps } from "@/lib/app";
 import { st_setStUsers } from "@/utils/stores_actions/str_act";
 import classNames from "classnames";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 
 export default function Home() {
   const [db_data, setDb_data] = useState<Friend[] | null | undefined>(null);
-  const { st_user } = useSelector((state: StoreProps) => state.AppStore);
+  // const { st_user } = useSelector((state: StoreProps) => state.AppStore);
 
   const handleSearch = async () => {
     try {
