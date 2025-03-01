@@ -17,6 +17,7 @@
     "@reduxjs/toolkit": "^2.6.0",
     "bcrypt": "^5.1.1",
     "classnames": "^2.5.1",
+    "motion": "^12.4.7",
     "nanoid": "^5.0.9",
     "next": "15.0.3",
     "nodemailer": "^6.10.0",

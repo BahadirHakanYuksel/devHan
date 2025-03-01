@@ -17,6 +17,8 @@ const loadUserFromStorage = (): Friend | null => {
 export interface AppStoreProps {
   value: number;
   st_user: null | Friend;
+  allFriendModalIsOpen?: boolean;
+  st_users?: Friend[];
 }
 
 const initialState: AppStoreProps = {
@@ -47,6 +49,12 @@ const AppStore = createSlice({
       state.st_user = null;
       if (typeof window !== "undefined") localStorage.removeItem("st_user");
     },
+    toggleAllFriendModal: (state) => {
+      state.allFriendModalIsOpen = !state.allFriendModalIsOpen;
+    },
+    setStUsers: (state, action: PayloadAction<Friend[]>) => {
+      state.st_users = action.payload;
+    },
   },
 });
 
@@ -56,5 +64,7 @@ export const {
   incrementByAmount,
   loginFront,
   logoutFront,
+  toggleAllFriendModal,
+  setStUsers,
 } = AppStore.actions;
 export default AppStore.reducer;

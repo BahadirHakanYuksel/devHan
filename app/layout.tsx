@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import Providers from "@/components/Providers";
+import FriendListAbs from "@/components/FriendListAbs";
 
 export const metadata: Metadata = {
   title: "Developer Hanı",
   description: "Don't forget your friends birthdays!",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -29,6 +30,7 @@ export default function RootLayout({
         <Providers>
           <Navbar />
           {children}
+          <FriendListAbs />
         </Providers>
       </body>
     </html>
