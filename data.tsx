@@ -108,14 +108,23 @@ const addFriend = (
 };
 
 let DATA: friend[] = [
+  // new friend(
+  //   "66420",
+  //   "Ersin Emre",
+  //   "AKCA",
+  //   calculateAge("2003-08-08"),
+  //   "2003-08-08",
+  //   "ersin-emre-akca.png",
+  //   "Elektrik-Elektronik Mühendisi"
+  // ),
   new friend(
-    "66420",
-    "Ersin Emre",
-    "AKCA",
-    calculateAge("2003-08-08"),
-    "2003-08-08",
-    "ersin-emre-akca.png",
-    "Elektrik-Elektronik Mühendisi"
+    "00000",
+    "ADMIN",
+    "_",
+    calculateAge("2025-01-01"),
+    "2025-01-01",
+    "",
+    "Admin"
   ),
   new friend(
     "66421",
@@ -135,15 +144,15 @@ let DATA: friend[] = [
     "burak-erguven.png",
     "Bilgisayar Mühendisi"
   ),
-  new friend(
-    "66423",
-    "Abdulkadir",
-    "İNAL",
-    calculateAge("2003-05-26"),
-    "2003-05-26",
-    "abdulkadir-inal.jpg",
-    "Bilgisayar Mühendisi"
-  ),
+  // new friend(
+  //   "66423",
+  //   "Abdulkadir",
+  //   "İNAL",
+  //   calculateAge("2003-05-26"),
+  //   "2003-05-26",
+  //   "abdulkadir-inal.jpg",
+  //   "Bilgisayar Mühendisi"
+  // ),
   // new friend(
   //   "66424",
   //   "Bahadır Hakan",

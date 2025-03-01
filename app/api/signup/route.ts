@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import { prisma } from "@/lib/prismadb";
 import DATA from "@/data";
-import { convertURLForm } from "@/lib/friend";
+import { dateTimeConvertToDate } from "@/lib/app";
 
 export async function POST(request: Request) {
   try {
@@ -47,13 +47,16 @@ export async function POST(request: Request) {
       );
 
       if (isHere) {
-        const imgName = convertURLForm(name + " " + surname);
+        const birthDay = dateTimeConvertToDate(birthdayDate)
+          .toString()
+          .replace(".", "")
+          .replace(".", "");
         const dotName =
           (name + " " + surname).toLowerCase().trim() === "ersin emre akca" ||
           (name + " " + surname).toLowerCase().trim() === "burak ergüven"
             ? ".png"
             : ".jpg";
-        return imgName + dotName;
+        return birthDay + dotName;
       }
     };
 

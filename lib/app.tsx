@@ -38,3 +38,8 @@ export const allFirstLetterCapitalize = (text: string): string => {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 };
+
+export const findProfileImage = (profilePhoto: string) => {
+  if (profilePhoto.includes("abdulkadir")) return "/images/abdulkadir-inal.jpg";
+  else if (profilePhoto.includes("burak")) return "/images/burak-inal.jpg";
+};

@@ -9,7 +9,7 @@ export default function Register() {
   // 0 login | 1 signup
 
   return (
-    <div className="pt-20">
+    <div className="registerMain">
       {activeState === 0 && <LoginForm setActiveState={setActiveState} />}
       {activeState === 1 && <SignupForm setActiveState={setActiveState} />}
     </div>

@@ -46,7 +46,6 @@ export default function SignupForm({
 
   const signup = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(signupParams.department);
 
     try {
       const response = await fetch("/api/signup", {
@@ -115,129 +114,85 @@ export default function SignupForm({
   };
 
   return (
-    <form onSubmit={signup} className="mx-auto w-[50%] p-5 flex flex-col gap-5">
+    <form onSubmit={signup} className="w-full p-5 flex flex-col gap-5">
       <header className="font-medium text-3xl rounded-lg text-orange-300 bg-orange-500 bg-opacity-15 px-2.5 h-16 flex items-center justify-end mb-2.5">
         Kayıt Ol
       </header>
-      <div className="grid grid-cols-3 gap-5">
-        <div className="relative flex flex-col gap-1">
-          <p className="text-lg ">
-            Adınız{" "}
-            <span className="text-gray-500 text-xs font-medium">
-              Min 3 karakter
-            </span>
-          </p>
-          <input
-            value={signupParams.name}
-            name="name"
-            onChange={handleChange}
-            type="text"
-            className="rounded-lg px-2.5 h-14 bg-transparent border-2 border-solid border-gray-600 focus:border-gray-400"
-            placeholder="Bahadır Hakan"
-          />
-        </div>
-        <div className="relative flex flex-col gap-1">
-          <p className="text-lg ">
-            Soyadınız{" "}
-            <span className="text-gray-500 text-xs font-medium">
-              Min 2 karakter
-            </span>
-          </p>
-          <input
-            value={signupParams.surname}
-            name="surname"
-            onChange={handleChange}
-            type="text"
-            className="rounded-lg px-2.5 h-14 bg-transparent border-2 border-solid border-gray-600 focus:border-gray-400"
-            placeholder="Yüksel"
-          />
-        </div>
-        <div className="relative flex flex-col gap-1">
-          <p className="text-lg ">
-            Kullanıcı Adınız{" "}
-            <span className="text-gray-500 text-xs font-medium">
-              Min 3 karakter
-            </span>
-          </p>
-          <input
-            value={signupParams.username}
-            name="username"
-            onChange={handleChange}
-            type="text"
-            className="rounded-lg px-2.5 h-14 bg-transparent border-2 border-solid border-gray-600 focus:border-gray-400"
-            placeholder="Hahpu"
-          />
-        </div>
-      </div>
-      <div className="relative flex flex-col gap-1">
-        <p className="text-lg ">
-          E-mail Adresiniz
-          <span className="text-gray-500 text-xs font-medium"></span>
-        </p>
-        <input
-          value={signupParams.email}
-          name="email"
-          onChange={handleChange}
-          type="email"
-          className="rounded-lg px-2.5 h-14 bg-transparent border-2 border-solid border-gray-600 focus:border-gray-400"
-          placeholder="example123@gmail.com"
+      <div className="signupFormBoxgrid">
+        <InputBox
+          title="Adınız"
+          rule="Min 2 karakter"
+          value={signupParams.name}
+          changeFunction={handleChange}
+          name="name"
+          type="text"
+          placeholder="Bahadır Hakan"
+        />
+        <InputBox
+          title="Soyadınız"
+          rule="Min 2 karakter"
+          value={signupParams.surname}
+          name="surname"
+          changeFunction={handleChange}
+          type="text"
+          placeholder="Yüksel"
+        />
+        <InputBox
+          title="Kullanıcı Adınız"
+          rule="Min 3 karakter"
+          value={signupParams.username}
+          changeFunction={handleChange}
+          name="username"
+          type="text"
+          placeholder="Hahpu"
         />
       </div>
-      <div className="grid grid-cols-2 gap-5">
-        <div className="relative flex flex-col gap-1">
-          <p className="text-lg ">
-            Şifre{" "}
-            <span className="text-gray-500 text-xs font-medium">
-              Min 6, Max 30 karakter
-            </span>
-          </p>
-          <input
-            name="password"
-            value={signupParams.password}
-            onChange={handleChange}
-            type="password"
-            className="rounded-lg px-2.5 h-14 bg-transparent border-2 border-solid border-gray-600 focus:border-gray-400"
-            placeholder="Şifreeee"
-          />
-        </div>
-        <div className="relative flex flex-col gap-1">
-          <p className="text-lg ">
-            Şifre Tekrar{" "}
-            <span className="text-gray-500 text-xs font-medium">
-              Robot değilsen doğru girersin
-            </span>
-          </p>
-          <input
-            value={passwordAgain}
-            onChange={(e) => setPasswordAgain(e.target.value)}
-            type="password"
-            className="rounded-lg px-2.5 h-14 bg-transparent border-2 border-solid border-gray-600 focus:border-gray-400"
-            placeholder="Tekrar Şifreeee"
-          />
-        </div>
+      <InputBox
+        title="E-Mail"
+        rule=""
+        value={signupParams.email}
+        changeFunction={handleChange}
+        name="email"
+        type="email"
+        placeholder="example123@gmail.com"
+      />
+
+      <div className="signupFormBoxgrid_passwords">
+        <InputBox
+          title="Şifre"
+          rule="Min 6, Max 30 karakter"
+          name="password"
+          value={signupParams.password}
+          changeFunction={handleChange}
+          type="password"
+          placeholder="Şifreeee"
+        />
+
+        <InputBox
+          title="Şifre Tekrar"
+          rule="Robot değilsen doğru girersin"
+          value={passwordAgain}
+          changeFunction={(e) => setPasswordAgain(e.target.value)}
+          type="password"
+          placeholder="Tekrar Şifreeee"
+        />
       </div>
 
-      <div className="grid grid-cols-3 gap-5">
-        <div className="relative flex flex-col gap-1">
-          <p className="text-lg ">
-            Doğum Tarihiniz{" "}
-            <span className="text-gray-500 text-xs font-medium">
-              gün.ay.yıl
-            </span>
-          </p>
-          <input
-            value={
-              signupParams.birthdayDate instanceof Date
-                ? signupParams.birthdayDate.toISOString().split("T")[0]
-                : signupParams.birthdayDate
-            }
-            name="birthdayDate"
-            onChange={handleChange}
-            type="date"
-            className="rounded-lg px-2.5 h-14 bg-transparent border-2 border-solid border-gray-600 focus:border-gray-400"
-            placeholder="00.00.0000"
-          />
-        </div>
+      <div className="signupFormBoxgrid">
+        <InputBox
+          title="Doğum Tarihiniz"
+          rule="gün.ay.yıl"
+          name="birthdayDate"
+          value={
+            signupParams.birthdayDate instanceof Date
+              ? signupParams.birthdayDate.toISOString().split("T")[0]
+              : signupParams.birthdayDate
+          }
+          changeFunction={handleChange}
+          type="date"
+          placeholder="00.00.0000"
+        />
+
         <div className="relative flex flex-col gap-1">
           <p className="text-lg ">
             Cinsiyetiniz{" "}
@@ -302,7 +257,7 @@ export default function SignupForm({
       >
         Kayıt Ol
       </button>
-      <div className="flex items-center justify-end gap-1.5">
+      <div className="underFormText">
         <span className="text-gray-300">
           Zaten Kayıt oldun mu, hadi canım, senin hesabın da vardır şimdi, hadi
           o zaman
@@ -310,7 +265,7 @@ export default function SignupForm({
         <button
           type="button"
           onClick={() => setActiveState(0)}
-          className="text-orange-400 font-medium hover:underline"
+          className="text-orange-400 font-medium hover:underline min-w-20 "
         >
           Giriş Yap
         </button>
@@ -318,3 +273,37 @@ export default function SignupForm({
     </form>
   );
 }
+
+const InputBox = ({
+  title,
+  rule,
+  name,
+  value,
+  changeFunction,
+  type,
+  placeholder,
+}: {
+  title: string;
+  rule?: string;
+  name?: string;
+  value: string;
+  changeFunction: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  type?: string;
+  placeholder: string;
+}) => {
+  return (
+    <div className="InputBox">
+      <p className="InputBoxTitle">
+        {title} <span className="InputTextRule">{rule}</span>
+      </p>
+      <input
+        name={name}
+        value={value}
+        onChange={changeFunction}
+        type={type}
+        className="InputBoxInput"
+        placeholder={placeholder}
+      />
+    </div>
+  );
+};

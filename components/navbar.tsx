@@ -74,18 +74,13 @@ export default function Navbar() {
       </Link>
       <UpdateMain />
 
-      <div className="absolute h-10 flex items-center -bottom-10 right-8 z-10 gap-1.5">
+      <div className="navMenu">
         {navMenu.map((item, i) => (
           <NavLink key={i} href={item.path} title={item.title} />
         ))}
         <NavLink href={activeMenuItem.path} title={activeMenuItem.title} />
         {activeMenuItem?.path !== "/register" && (
-          <button
-            onClick={logout}
-            className={classNames(
-              "bg-orange-300 bg-opacity-20 hover:bg-orange-400 hover:bg-opacity-30 border-b-2 border-solid border-transparent duration-200 px-5 rounded-b-lg h-full flex items-center backdrop-blur-lg"
-            )}
-          >
+          <button onClick={logout} className={classNames("NavLogOutButton")}>
             Çıkış Yap
           </button>
         )}

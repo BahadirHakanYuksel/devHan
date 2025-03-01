@@ -1,4 +1,3 @@
-import { convertURLForm } from "@/lib/friend";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -23,11 +22,10 @@ export default function FriendCard(data: Friend) {
     data?.username
   );
 
+  console.log(user);
+
   return (
-    <Link
-      href={`/${convertURLForm(user?.username?.toLowerCase().toString() || "")}`}
-      className="friendCard"
-    >
+    <Link href={`/${user?.username || ""}`} className="friendCard">
       <div className="fcImageDiv">
         {user.profilePhoto !== "" ? (
           <Image

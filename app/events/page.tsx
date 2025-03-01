@@ -26,7 +26,7 @@ export default function EventPage() {
         .setDateTime(new Date())
         .setGoogleMapsLink("https://maps.app.goo.gl/nrWFrvmVSnhAQbNZ6")
         .setId()
-        .setCreator(DATA[4].name)
+        .setCreator(DATA[0].name)
         .build();
       setEVENT(newEvent);
     }

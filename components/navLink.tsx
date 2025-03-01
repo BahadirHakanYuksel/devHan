@@ -14,13 +14,9 @@ export default function NavLink({ href, title }: NavLinkProps) {
   return (
     <Link
       href={href}
-      className={classNames(
-        "bg-orange-300 bg-opacity-20 hover:bg-orange-400 hover:bg-opacity-30 border-b-2 border-solid border-transparent duration-200 px-5 rounded-b-lg h-full flex items-center backdrop-blur-lg",
-        {
-          "border-b-orange-500 !border-t-0 !pointer-events-none !text-orange-200":
-            href === path,
-        }
-      )}
+      className={classNames("navMenuItem", {
+        navMenuItemActive: href === path,
+      })}
     >
       {title}
     </Link>

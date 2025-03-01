@@ -1,13 +1,13 @@
 "use client";
 
 import { Friend } from "@/data";
-import { allFirstLetterCapitalize, StoreProps } from "@/lib/app";
+import { StoreProps } from "@/lib/app";
 import { st_toggleAllFriendModal } from "@/utils/stores_actions/str_act";
-import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 import classNames from "classnames";
+import MobileUserCard from "./MobileUserCard";
 
 export default function FriendListAbs() {
   const { st_users, allFriendModalIsOpen } = useSelector(
@@ -38,7 +38,7 @@ export default function FriendListAbs() {
     }
 
     if (allFriendModalIsOpen) {
-      setBoxHeight(300);
+      setBoxHeight(340);
     } else {
       setBoxHeight(0);
     }
@@ -51,8 +51,6 @@ export default function FriendListAbs() {
   const filteredList: Friend[] =
     st_users?.filter((user: Friend) => user.actionNumber > 0) || [];
 
-  const router = useRouter();
-
   useEffect(() => {
     two();
   }, [allFriendModalIsOpen]);
@@ -61,14 +59,14 @@ export default function FriendListAbs() {
     if (loading && ((st_users?.length ?? 0) > 0 || filteredList.length > 0)) {
       setLoading(false);
     }
-  }, [filteredList, st_users]);
+  }, [filteredList, st_users, allFriendModalIsOpen]);
 
   return (
     <motion.div
       initial={{ opacity: 0, height: 0 }}
       animate={{ opacity: 1, height: boxHeight }}
       exit={{ opacity: 0, height: 0 }}
-      className="fixed bottom-0 right-10 w-72 rounded-t-lg min-h-14 bg-[#202020]"
+      className="FriendListAbs"
     >
       <button
         onClick={() => st_toggleAllFriendModal()}
@@ -104,8 +102,8 @@ export default function FriendListAbs() {
       </button>
 
       {allFriendModalIsOpen && (
-        <div className="py-2.5 px-2.5 border-x-2 border-gray-400 flex flex-col gap-2.5">
-          <div className="grid grid-cols-2 ">
+        <div className="py-2.5 border-x-2 border-gray-400 flex flex-col gap-2.5">
+          <div className="grid grid-cols-2 px-2.5">
             <button
               onClick={() => setActiveMenu(0)}
               className={classNames(
@@ -132,31 +130,12 @@ export default function FriendListAbs() {
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
-            className="min-h-60 flex flex-col gap-2.5 max-h-64 overflow-y-auto"
+            className="flex flex-col min-h-56 max-h-56 overflow-y-auto"
           >
             {data?.map((user: Friend, key) => (
-              <button
-                key={key}
-                onClick={() => router.push(`/${user.username}`)}
-                className="h-12 rounded-md bg-black border-2 border-solid border-gray-500 hover:border-orange-500 duration-200"
-              >
-                <div className="flex items-center justify-between px-2.5">
-                  <section className="text-sm">
-                    <span>{user.username}</span>
-                    <span className="text-gray-400 text-[10px] font-medium ml-1.5">
-                      {allFirstLetterCapitalize(user.name)}
-                    </span>
-                  </section>
-                  <section className="text-xs">
-                    {user.actionNumber === 1 ? (
-                      <div className="w-2 h-2 rounded-full bg-green-500 mr-1.5"></div>
-                    ) : (
-                      <div className="w-2 h-2 rounded-full bg-gray-500 mr-1.5"></div>
-                    )}
-                  </section>
-                </div>
-              </button>
+              <MobileUserCard key={key} user={user} />
             ))}
+
             {data.length === 0 && (
               <div className="text-sm">
                 {activeMenu === 0

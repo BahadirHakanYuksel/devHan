@@ -57,7 +57,7 @@ export default function LoginForm({
   };
 
   return (
-    <form onSubmit={login} className="mx-auto w-[50%] p-5 flex flex-col gap-5">
+    <form onSubmit={login} className="w-full p-5 flex flex-col gap-5">
       <header className="font-medium text-3xl rounded-lg text-orange-300 bg-orange-500 bg-opacity-15 px-2.5 h-16 flex items-center justify-start mb-2.5">
         Giriş Yap
       </header>
@@ -102,14 +102,14 @@ export default function LoginForm({
       >
         Giriş Yap
       </button>
-      <div className="flex items-center justify-end gap-1.5">
+      <div className="underFormText">
         <span className="text-gray-300">
           Henüz kayıt olmadın mı? Ayıp ediyorsun, hadi
         </span>
         <button
           type="button"
           onClick={() => setActiveState(1)}
-          className="text-orange-400 font-medium hover:underline"
+          className="text-orange-400 font-medium hover:underline min-w-20"
         >
           Kayıt Ol
         </button>
