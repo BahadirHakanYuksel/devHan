@@ -45,23 +45,23 @@ export default function EventPage() {
             ? event.category
             : event.category.title;
 
-        const data = new EventBuilder()
-          .setId(event.id)
-          .setName(event.name)
-          .setDescription(event.description)
-          .setDateTime(event.dateTime)
-          .setGoogleMapsLink(event.googleMapsLink)
-          .setCategory(categoryName)
-          .setEventImg(event?.eventImg)
-          .setParticipants(event.participants)
-          .setReactions(event.reactions)
-          .setCreatorName(event?.creatorName || "")
-          .setCreatorId(event.creatorId || "")
-          .setCreatedAt(event.createdAt || new Date())
-          .setUpdatedAt(event.updatedAt || new Date())
-          .build();
-
-        dummy.push(data);
+        dummy.push(
+          new EventBuilder()
+            .setId(event.id)
+            .setName(event.name)
+            .setDescription(event.description)
+            .setDateTime(event.dateTime)
+            .setGoogleMapsLink(event.googleMapsLink)
+            .setCategory(categoryName)
+            .setEventImg(event?.eventImg)
+            .setParticipants(event.participants)
+            .setReactions(event.reactions)
+            .setCreatorName(event?.creatorName || "")
+            .setCreatorId(event.creatorId || "")
+            .setCreatedAt(event.createdAt || new Date())
+            .setUpdatedAt(event.updatedAt || new Date())
+            .build()
+        );
       });
 
       setMyEvents(dummy);

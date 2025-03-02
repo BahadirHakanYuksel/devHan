@@ -69,18 +69,18 @@ export default function EventDetailPage({
                 {formatedToUIDate(new Date(myEvent.createdAt || "")) ===
                 formatedToUIDate(new Date(myEvent.updatedAt || "")) ? (
                   <span className="text-xs font-medium text-gray-400">
-                    {formatedToUIDate(new Date(myEvent.createdAt || ""))}'de
-                    oluşturuldu.
+                    {formatedToUIDate(new Date(myEvent.createdAt || ""))}
+                    {"'"}de oluşturuldu.
                   </span>
                 ) : (
                   <>
                     <span className="text-xs font-medium text-gray-400">
-                      {formatedToUIDate(new Date(myEvent.createdAt || ""))}'de
-                      oluşturuldu.
+                      {formatedToUIDate(new Date(myEvent.createdAt || ""))}
+                      {"'"}de oluşturuldu.
                     </span>
                     <span className="text-xs font-medium text-gray-400">
-                      {formatedToUIDate(new Date(myEvent.updatedAt || ""))}'de
-                      güncellendi.
+                      {formatedToUIDate(new Date(myEvent.updatedAt || ""))}
+                      {"'"}de güncellendi.
                     </span>
                   </>
                 )}
