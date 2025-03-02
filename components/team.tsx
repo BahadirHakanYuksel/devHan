@@ -3,12 +3,11 @@ import FriendCard from "./friendCard";
 import Title from "./title";
 
 interface TeamProps {
-  data: Friend[];
   page: "HOME" | "FRIEND_DETAIL";
   db_data: Friend[] | null | undefined;
 }
 
-export default function Team({ data, page = "HOME", db_data }: TeamProps) {
+export default function Team({ page = "HOME", db_data }: TeamProps) {
   return (
     <div className="flex flex-col gap-20 items-center">
       <Title>
@@ -18,9 +17,9 @@ export default function Team({ data, page = "HOME", db_data }: TeamProps) {
         {db_data?.map((friend: Friend, index: number) => (
           <FriendCard key={index} {...friend} />
         ))}
-        {data.map((friend: Friend, index) => (
+        {/* {data.map((friend: Friend, index) => (
           <FriendCard key={index} {...friend} />
-        ))}
+        ))} */}
       </div>
     </div>
   );

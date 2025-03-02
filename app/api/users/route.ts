@@ -6,6 +6,7 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const name = searchParams.get("name");
     const username = searchParams.get("username");
+    const infoToEvent = searchParams.get("info-to-event");
 
     // Validasyon
     // if (!name || name.trim().length < 2) {
@@ -16,6 +17,30 @@ export async function GET(request: Request) {
     // }
 
     let users;
+
+    if (infoToEvent) {
+      users = await prisma.friends.findMany({
+        where: {
+          id: {
+            contains: infoToEvent,
+          },
+        },
+        select: {
+          name: true,
+          username: true,
+        },
+      });
+      if (users.length === 0) {
+        return NextResponse.json(
+          {
+            success: false,
+            message: "Eventi oluşturan kişinin bilgileri bulunamadi",
+          },
+          { status: 404 }
+        );
+      }
+      return NextResponse.json({ success: true, users });
+    }
 
     if (username) {
       users = await prisma.friends.findMany({

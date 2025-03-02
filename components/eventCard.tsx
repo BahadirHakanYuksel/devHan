@@ -1,12 +1,13 @@
 import { createSlug } from "@/lib/app";
-import { Event } from "@/lib/event";
+import { EventProps } from "@/lib/event";
+import { motion } from "motion/react";
 import Link from "next/link";
 
 interface cardInterface {
-  event: Event;
+  event: EventProps;
 }
 
-const formatedToUIDate = (dateTime: Date) => {
+export const formatedToUIDate = (dateTime: Date) => {
   const date = new Date(dateTime);
   const day = String(date.getDate()).padStart(2, "0");
   const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -31,14 +32,18 @@ export default function EventCard({ event }: cardInterface) {
   ];
 
   const attendAction = () => {
-    event.addParticipant("user_id");
-
-    console.log("katıldı", event.participants);
+    // event.addParticipant("user_id");
+    alert("Yakında...");
   };
 
-  const slug = createSlug(`${event.name}-${event.id}`);
+  const slug = createSlug(`${event.id}`);
+
   return (
-    <div className="bg-[#5555] rounded-lg p-3 flex flex-col gap-3 relative">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="bg-[#5555] rounded-lg p-3 flex flex-col gap-3 relative"
+    >
       <div className="flex gap-2.5">
         <div className="aspect-square w-32 bg-[#111] rounded-lg flex items-center justify-center">
           {event.eventImg ? (
@@ -56,19 +61,31 @@ export default function EventCard({ event }: cardInterface) {
           <div className="flex">
             <p
               style={{
-                color: event.category.color,
+                color:
+                  typeof event.category !== "string"
+                    ? event.category.color
+                    : "initial",
               }}
               onClick={() => (window.location.href = "https://www.google.com")} // Yönlendirme burada yapılır
               className="flex text-xs bg-black rounded-full px-2 h-5 items-center justify-center"
             >
-              <span>{event.category.emo}</span>
-              <span>{event.category.title}</span>
+              {typeof event.category !== "string" && (
+                <>
+                  <span>{event.category.emo}</span>
+                  <span>{event.category.title}</span>
+                </>
+              )}
             </p>
           </div>
           <div className="flex flex-col gap-1 mt-2.5">
             <p className="text-xs">
               Etkinlik{" "}
-              <span className="text-orange-200">{event.creatorName}</span>{" "}
+              <Link
+                href={`/${event.creatorUsername}`}
+                className="text-orange-200 hover:underline"
+              >
+                {event?.creatorName}
+              </Link>{" "}
               tarafından oluşturuldu.
             </p>
             <div className="text-xs flex items-center">
@@ -116,6 +133,6 @@ export default function EventCard({ event }: cardInterface) {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

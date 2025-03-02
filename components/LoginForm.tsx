@@ -83,7 +83,7 @@ export default function LoginForm({
         <p className="text-lg ml-3.5">
           Şifre{" "}
           <span className="text-gray-500 text-xs font-medium">
-            Max 6, Min 30 karakter
+            Min 6, Max 30 karakter
           </span>
         </p>
         <input

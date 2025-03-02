@@ -147,7 +147,7 @@ export default function FriendDetailPage({
 
       {filteredList && (
         <div className="mt-44">
-          {<Team data={filteredList} page="FRIEND_DETAIL" db_data={null} />}
+          {<Team db_data={filteredList} page="FRIEND_DETAIL" />}
         </div>
       )}
     </div>

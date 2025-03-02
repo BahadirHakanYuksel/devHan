@@ -1,7 +1,7 @@
 "use client";
 
 import { Friend } from "@/data";
-import { StoreProps } from "@/lib/app";
+import { getUsers, StoreProps } from "@/lib/app";
 import { st_toggleAllFriendModal } from "@/utils/stores_actions/str_act";
 import { useSelector } from "react-redux";
 import { motion } from "motion/react";
@@ -18,17 +18,33 @@ export default function FriendListAbs() {
   const [boxHeight, setBoxHeight] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  const [data, setData] = useState<Friend[]>(st_users || []);
+  const [data, setData] = useState<Friend[]>([]);
+  const [filteredList, setFilteredList] = useState<Friend[]>([]);
+  const [allUsers, setAllUsers] = useState<Friend[]>([]);
 
-  const one = () => {
+  useEffect(() => {
+    getUsers().then((res) => {
+      if (res.success) {
+        setAllUsers(res.users);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    const fList =
+      allUsers.filter((user: Friend) => user.actionNumber > 0) || [];
+    setFilteredList(fList);
+  }, [allUsers]);
+
+  useEffect(() => {
     if (activeMenu === 0) {
       setData(filteredList);
     } else {
-      setData(st_users || []);
+      setData(allUsers || []);
     }
-  };
+  }, [activeMenu]);
 
-  const two = () => {
+  useEffect(() => {
     if (filteredList.length === 0) {
       setActiveMenu(1);
       setData(st_users || []);
@@ -42,24 +58,13 @@ export default function FriendListAbs() {
     } else {
       setBoxHeight(0);
     }
-  };
-
-  useEffect(() => {
-    one();
-  }, [activeMenu]);
-
-  const filteredList: Friend[] =
-    st_users?.filter((user: Friend) => user.actionNumber > 0) || [];
-
-  useEffect(() => {
-    two();
   }, [allFriendModalIsOpen]);
 
   useEffect(() => {
-    if (loading && ((st_users?.length ?? 0) > 0 || filteredList.length > 0)) {
+    if (loading && allUsers?.length > 0) {
       setLoading(false);
     }
-  }, [filteredList, st_users, allFriendModalIsOpen]);
+  }, [allUsers]);
 
   return (
     <motion.div
@@ -84,7 +89,7 @@ export default function FriendListAbs() {
             <span>
               Arkadaşlar{" "}
               <span className="text-gray-300 text-sm">
-                ({st_users?.length})
+                ({allUsers?.length})
               </span>
             </span>
             <section className="text-xs text-gray-300">

@@ -43,3 +43,32 @@ export const findProfileImage = (profilePhoto: string) => {
   if (profilePhoto.includes("abdulkadir")) return "/images/abdulkadir-inal.jpg";
   else if (profilePhoto.includes("burak")) return "/images/burak-inal.jpg";
 };
+
+export const getUserInfoAboutEvent = async (id: string) => {
+  try {
+    const responseToUser = await fetch(
+      `/api/users?info-to-event=${encodeURIComponent(id)}`
+    );
+
+    if (!responseToUser.ok) throw new Error("Boyle biri yok - event");
+    const dataToUser = await responseToUser.json();
+    return {
+      name: dataToUser.users[0].name,
+      username: dataToUser.users[0].username,
+    };
+  } catch (error) {
+    console.error("Fetch error:", error);
+  }
+};
+
+export const getUsers = async () => {
+  try {
+    const responseToUser = await fetch(`/api/users`);
+
+    if (!responseToUser.ok) throw new Error("Boyle biri yok - event");
+
+    return responseToUser.json();
+  } catch (error) {
+    console.error("Fetch error:", error);
+  }
+};

@@ -31,7 +31,7 @@ model Friends {
 }
 
 model Events {
-  id             String   @id @default(uuid())
+  id             String   @id @default(uuid()) @unique
   name    String
   description    String @default("Lafı uzatmaya gerek yok, katılın ve eğlenin!")
   dateTime          DateTime
@@ -42,5 +42,6 @@ model Events {
   eventImg          String @default("")
   participants      String[] @default([])
   reactions         String[]  @default([])
-  creatorName           String
+  creatorId           String @default("")
+  creatorName         String @default("")
 }

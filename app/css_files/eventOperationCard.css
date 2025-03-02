@@ -1,9 +1,9 @@
 .eventOperationCard {
-  @apply absolute w-[1100px]  bg-opacity-30 left-1/2 -translate-x-1/2 top-40 z-10 px-7 flex flex-col;
+  @apply absolute w-[1100px]  bg-opacity-30 left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-10 px-7 flex flex-col;
 }
 
 .eop_main {
-  @apply w-full bg-black border-2 border-solid border-l-[#888] border-t-[#777] border-r-[#666] border-b-[#555] p-8 rounded-lg gap-5;
+  @apply w-full bg-black border-2 border-solid border-l-[#888] border-t-[#777] border-r-[#666] border-b-[#555] p-8 rounded-lg rounded-t-none border-t-0 gap-5;
   display: grid;
   grid-template-columns: 320px auto;
 }

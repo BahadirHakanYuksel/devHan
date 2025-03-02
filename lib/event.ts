@@ -1,5 +1,5 @@
 import { friend } from "@/data";
-import { generateRandomId } from "./app";
+// import { generateRandomId } from "./app";
 
 export const closeTheEventOperationCard = ({
   setOperationIsOpen,
@@ -112,34 +112,38 @@ class Reaction {
 
 type EventCategory = { title: string; emo: string; color: string };
 
-interface EventProps {
+export interface EventProps {
   id: string;
   name: string;
   description: string;
   dateTime: Date;
   googleMapsLink: string | null;
-  category: EventCategory;
+  category: EventCategory | string;
   eventImg: string | null;
   participants: string[];
   reactions: Reaction[];
   creatorName: string | null; // Provide a default value
   createdAt: Date | null;
   updatedAt: Date | null;
+  creatorId?: string;
+  creatorUsername?: string;
 }
 
 export class Event implements EventProps {
-  readonly id: string;
+  id: string;
   name: string;
   description: string;
   dateTime: Date;
   googleMapsLink: string | null;
-  category: EventCategory;
+  category: EventCategory | string;
   eventImg: string | null;
   participants: string[];
   reactions: Reaction[];
   creatorName: string | null;
   createdAt: Date | null;
   updatedAt: Date | null;
+  creatorId?: string;
+  creatorUsername?: string | undefined;
 
   constructor(props: Partial<EventProps> = {}) {
     this.id = props.id || "default-id";
@@ -147,17 +151,18 @@ export class Event implements EventProps {
     this.description = props.description || "";
     this.dateTime = props.dateTime || new Date();
     this.googleMapsLink = props.googleMapsLink || null;
-    this.category = props.category || {
-      title: "Diğer",
-      emo: "🔍",
-      color: "bg-orange-400",
-    };
+    this.category =
+      typeof props.category === "string"
+        ? { title: "Diğer", emo: "🔍", color: "#9ca3af" }
+        : props.category || { title: "Diğer", emo: "🔍", color: "#9ca3af" };
     this.eventImg = props.eventImg || null;
     this.participants = props.participants || [];
     this.reactions = props.reactions || [];
     this.creatorName = props.creatorName || null;
     this.createdAt = props.createdAt || new Date();
     this.updatedAt = props.updatedAt || null;
+    this.creatorId = props.creatorId && props.creatorId;
+    this.creatorUsername = props.creatorUsername || undefined;
   }
 
   addParticipant(participantId: string): void {
@@ -191,9 +196,11 @@ export class EventBuilder implements EventProps {
   creatorName: string = "";
   createdAt: Date | null = new Date();
   updatedAt: Date | null = null;
+  creatorId?: string | undefined;
+  creatorUsername?: string | undefined;
   // Builder için set metodları
-  setId(): this {
-    const id = generateRandomId();
+  setId(id: string): this {
+    // const id = generateRandomId();
     this.id = id;
     return this;
   }
@@ -219,12 +226,12 @@ export class EventBuilder implements EventProps {
   }
 
   setCategory(categoryTitle: string): this {
-    const title: string = categoryTitle;
-    const emo: string =
-      eventCategories.find((cat) => cat.title === categoryTitle)?.emo || "";
-    const color: string =
-      eventCategories.find((cat) => cat.title === categoryTitle)?.color || "";
-    this.category = { title, emo, color };
+    const myCategory: { title: string; emo: string; color: string } =
+      eventCategories.find(
+        (cat) => cat.title.toLowerCase() === categoryTitle.toLowerCase()
+      ) || { title: "Diğer", emo: "🔍", color: "#9ca3af" };
+
+    this.category = myCategory;
     return this;
   }
 
@@ -242,8 +249,26 @@ export class EventBuilder implements EventProps {
     this.reactions = reactions;
     return this;
   }
-  setCreator(creator: string): this {
-    this.creatorName = creator;
+  setCreatorName(creatorName: string): this {
+    this.creatorName = creatorName;
+    return this;
+  }
+  setCreatorId(creatorId: string): this {
+    console.log("creatorId: ", creatorId);
+
+    this.creatorId = creatorId;
+    return this;
+  }
+  setCreatedAt(createdAt: Date): this {
+    this.createdAt = createdAt;
+    return this;
+  }
+  setUpdatedAt(updatedAt: Date): this {
+    this.updatedAt = updatedAt;
+    return this;
+  }
+  setCreatorUsername(creatorUsername: string): this {
+    this.creatorUsername = creatorUsername;
     return this;
   }
 
@@ -266,6 +291,10 @@ export class EventBuilder implements EventProps {
       participants: this.participants,
       reactions: this.reactions,
       creatorName: this.creatorName,
+      createdAt: this.createdAt,
+      updatedAt: this.updatedAt,
+      creatorId: this.creatorId,
+      creatorUsername: this.creatorUsername,
     });
   }
 }

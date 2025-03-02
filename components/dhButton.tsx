@@ -16,6 +16,7 @@ interface dhButtonProps {
     | "rounded-md"
     | "rounded-sm"
     | "rounded-xl";
+  type?: "button" | "submit" | "reset";
 }
 
 export default function DhButton({
@@ -24,6 +25,7 @@ export default function DhButton({
   children,
   color = "default",
   borRad = "rounded-full",
+  type = "button",
 }: dhButtonProps) {
   return (
     <>
@@ -33,6 +35,7 @@ export default function DhButton({
         </Link>
       ) : (
         <button
+          type={type}
           className={classNames(`!${borRad} dhButtonDefault `, {
             "!bg-red-500 text-white": color === "red",
             "!bg-blue-500 text-white": color === "blue",

@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "Events" ADD COLUMN     "creatorName" TEXT NOT NULL DEFAULT '',
+ALTER COLUMN "category" SET NOT NULL,
+ALTER COLUMN "category" SET DATA TYPE TEXT;

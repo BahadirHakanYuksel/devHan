@@ -16,6 +16,12 @@ export default function UpdateNotes() {
           güncellendi.
         </li>
         <li>Animasyonlar eklendi.</li>
+        <li>-------------------------</li>
+        <li>YENİ</li>
+        <li>Etkinlik oluşturma özelliği eklendi</li>
+        <li>Etkinlik detay sayfası eklendi</li>
+        <li>Biraz animasyon</li>
+        <li>Not: Şuan bu sayfalar mobile uyumlu değil</li>
       </ul>
     </div>
   );

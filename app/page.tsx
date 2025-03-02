@@ -3,7 +3,7 @@
 import FeedbackForm from "@/components/feedbackForm";
 import FeedbackList from "@/components/feedBackList";
 import Team from "@/components/team";
-import DATA, { Friend, welcomeTextArray } from "@/data";
+import { Friend, welcomeTextArray } from "@/data";
 import { st_setStUsers } from "@/utils/stores_actions/str_act";
 import classNames from "classnames";
 import { useEffect, useState } from "react";
@@ -49,7 +49,7 @@ export default function Home() {
           </p>
         ))}
       </header>
-      <Team data={DATA} page={"HOME"} db_data={db_data} />
+      <Team page={"HOME"} db_data={db_data} />
       <FeedbackForm />
       <FeedbackList />
     </div>
