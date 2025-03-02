@@ -37,7 +37,7 @@ export default function EventPage() {
 
       let data = await response.json();
 
-      const dummy: EventProps[] = [];
+      let dummy: EventProps[] = [];
 
       data.forEach((event: EventProps) => {
         const categoryName =
