@@ -35,7 +35,7 @@ export default function EventPage() {
 
       if (!response.ok) throw new Error("Events fetch failed");
 
-      let data = await response.json();
+      const data = await response.json();
 
       let dummy: EventProps[] = [];
 
