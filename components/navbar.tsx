@@ -10,7 +10,6 @@ import classNames from "classnames";
 import { st_logoutFront } from "@/utils/stores_actions/str_act";
 import { useRouter } from "next/navigation";
 import { StoreProps } from "@/lib/app";
-import { convertURLForm } from "@/lib/friend";
 
 export default function Navbar() {
   const { st_user } = useSelector((state: StoreProps) => state.AppStore);
