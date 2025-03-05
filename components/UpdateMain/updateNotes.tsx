@@ -6,22 +6,11 @@ export default function UpdateNotes() {
         <span className="text-gray-500 font-medium text-xs">v1.0.1</span>
       </header>
       <ul className="list-disc list-inside text-white text-sm flex flex-col gap-2.5">
-        <li>Giriş Yap - Kayıt Ol sistemi eklendi.</li>
-        <li>
-          Sisteme kayıtlı handaşların aktiflik durumunu görebileceğimiz kart
-          eklendi.
-        </li>
-        <li>
-          Mobil Güncellemeler; navbar güncellendi, arkadaşlar listesi
-          güncellendi.
-        </li>
-        <li>Animasyonlar eklendi.</li>
-        <li>-------------------------</li>
         <li>YENİ</li>
-        <li>Etkinlik oluşturma özelliği eklendi</li>
-        <li>Etkinlik detay sayfası eklendi</li>
-        <li>Biraz animasyon</li>
-        <li>Not: Şuan bu sayfalar mobile uyumlu değil</li>
+        <li>Profil sayfası güncellendi. Yeni animasyonlar eklendi.</li>
+        <li>
+          Handaşların oluşturduğu etkinlikler artık profillerinde de görünüyor.
+        </li>
       </ul>
     </div>
   );

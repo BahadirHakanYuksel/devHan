@@ -59,6 +59,7 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
 
     const eventId = searchParams.get("id");
+    const creatorId = searchParams.get("creatorId");
     if (eventId) {
       const event = await prisma.events.findUnique({
         where: {
@@ -71,6 +72,22 @@ export async function GET(request: Request) {
       }
 
       return NextResponse.json(event);
+    }
+    if (creatorId) {
+      const events = await prisma.events.findMany({
+        where: {
+          creatorId: creatorId,
+        },
+        orderBy: {
+          dateTime: "asc",
+        },
+      });
+
+      return NextResponse.json({
+        events: events,
+        status: 200,
+        message: "Events by createdId fetched successfully",
+      });
     }
 
     const events = await prisma.events.findMany({

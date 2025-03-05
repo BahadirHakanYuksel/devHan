@@ -22,8 +22,6 @@ export default function FriendCard(data: Friend) {
     data?.username
   );
 
-  console.log(user);
-
   return (
     <Link href={`/${user?.username || ""}`} className="friendCard">
       <div className="fcImageDiv">

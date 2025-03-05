@@ -7,6 +7,10 @@ import Department from "@/components/department";
 import Team from "@/components/team";
 import { calculateAge, Friend, friend } from "@/data";
 import { allFirstLetterCapitalize, dateTimeConvertToDate } from "@/lib/app";
+import Title from "@/components/title";
+import EventCard from "@/components/eventCard";
+import { EventBuilder, EventProps } from "@/lib/event";
+import { motion } from "motion/react";
 // import { useSelector } from "react-redux";
 
 interface Params {
@@ -21,6 +25,7 @@ export default function FriendDetailPage({
   const [user, setUser] = useState<friend | null>(null);
   const [filteredList, setFilteredList] = useState<friend[] | null>(null);
   const [name, setName] = useState<string | null>(null);
+  const [events, setEvents] = useState<EventProps[] | null>(null);
   // const [isYou, setIsYou] = useState(false);
 
   // const { st_user } = useSelector((state: any) => state.AppStore);
@@ -70,6 +75,7 @@ export default function FriendDetailPage({
         );
 
         setUser(new_user);
+        await fetchThisFriendEvents(this_user.id);
 
         const filtered_list = dataToUsers.users.filter(
           (user: Friend) => user.username !== this_user.username
@@ -82,74 +88,135 @@ export default function FriendDetailPage({
     }
   };
 
+  const fetchThisFriendEvents = async (id: string) => {
+    try {
+      const response = await fetch(`/api/events?creatorId=${id}`);
+      if (!response.ok) throw new Error("Bu arkadaşın etkinliği yok");
+
+      const data = await response.json();
+      if (data.status === 200) {
+        const dummy: EventProps[] = [];
+
+        data.events.forEach((event: EventProps) => {
+          const categoryName =
+            typeof event.category === "string"
+              ? event.category
+              : event.category.title;
+
+          dummy.push(
+            new EventBuilder()
+              .setId(event.id)
+              .setName(event.name)
+              .setDateTime(event.dateTime)
+              .setGoogleMapsLink(event.googleMapsLink)
+              .setCategory(categoryName)
+              .setEventImg(event?.eventImg)
+              .setParticipants(event.participants)
+              .setReactions(event.reactions)
+              .setCreatorName(event?.creatorName || "")
+              .build()
+          );
+        });
+
+        setEvents(dummy);
+      }
+    } catch (error) {
+      console.error("Etkinlik arama hatası:", error);
+    }
+  };
+
   useEffect(() => {
-    // if (name) {
-    //   const data = findFriend(name); // Find the friend based on the 'name'
-    //   console.log(name);
-
-    //   if (data) {
-    //     const new_user: friend = new friend(
-    //       data.id,
-    //       data.name,
-    //       data.surname,
-    //       calculateAge(dateTimeConvertToDate(data.birthdayDate)),
-    //       dateTimeConvertToDate(data.birthdayDate),
-    //       data.profilePhoto,
-    //       data.department
-    //     );
-    //     setUser(new_user);
-    //     // st_user?.name === friend?.name ? setIsYou(true) : setIsYou(false);
-
-    //     setFilteredList(filteredFriends(data.name)); // Filter the friends list
-    //   } else {
-    //     throw new Error("Friend not found");
-    //   }
-    // }
-
     if (name) {
       fetchThisFriend(name);
     }
   }, [name]);
 
   return (
-    <div className="p-10 flex flex-col gap-5 items-center">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="p-10 flex flex-col gap-5 items-center"
+    >
       {/* {isYou && <h1 className="text-3xl font-bold text-white">Profil</h1>} */}
 
-      <div className="w-[220px] h-[220px] rounded-full flex items-center justify-center overflow-hidden border-2 border-solid border-gray-400 text-7xl">
-        {user?.profilePhoto ? (
-          <Image
-            width={220}
-            height={220}
-            className="object-top rounded-full"
-            src={`/images/${user.profilePhoto}` || ""}
-            alt={user.name || ""}
-          />
-        ) : (
-          <FaUser />
-        )}
-      </div>
-      <div className="friend-name">
-        {allFirstLetterCapitalize(
-          user ? user?.name + " " + user?.surname : "no name"
-        )}
-      </div>
-      <Department size="large">{user ? user?.department : "Handaş"}</Department>
-      <div className="flex flex-col gap-2.5 h-[52px]">
-        <section className="flex items-center justify-center gap-2.5">
-          <p className="birthday-text">Yaş</p>
-          <p className="birthday-text-value">{user?.age}</p>
-        </section>
-        <section className="flex items-center justify-center gap-2.5">
-          <p className="birthday-text">Doğum Günü</p>
-          <p className="birthday-text-value">{user?.birthdayDate.toString()}</p>
-        </section>
-      </div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="p-10 flex flex-col gap-5 items-center"
+      >
+        <div className="w-[220px] h-[220px] rounded-full flex items-center justify-center overflow-hidden border-2 border-solid border-gray-400 text-7xl">
+          {user?.profilePhoto ? (
+            <Image
+              width={220}
+              height={220}
+              className="object-top rounded-full"
+              src={`/images/${user.profilePhoto}` || ""}
+              alt={user.name || ""}
+            />
+          ) : // <FaUser />
+          user ? (
+            <FaUser />
+          ) : (
+            <div className="loadingCircle">
+              <FaUser />
+            </div>
+          )}
+        </div>
+
+        <div className="friend-name">
+          {user ? (
+            allFirstLetterCapitalize(
+              user ? user.name + " " + user.surname : "no name"
+            )
+          ) : (
+            <div className="container">
+              <div className="loading-bar">Kim ulan bu?</div>
+            </div>
+          )}
+        </div>
+        <Department size="large">
+          {user ? user?.department : "Handaş"}
+        </Department>
+        <div className="flex flex-col gap-2.5 h-[52px]">
+          <section className="flex items-center justify-center gap-2.5">
+            <p className="birthday-text">Yaş</p>
+            <p className="birthday-text-value">{user?.age}</p>
+          </section>
+          <section className="flex items-center justify-center gap-2.5">
+            <p className="birthday-text">Doğum Günü</p>
+            <p className="birthday-text-value">
+              {user?.birthdayDate.toString()}
+            </p>
+          </section>
+        </div>
+      </motion.div>
+
+      {events && events.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="mt-44"
+        >
+          <Title>Oluşturulan Etkinlikler</Title>
+          <div className="mx-auto grid grid-cols-3 justify-center gap-5">
+            {events.map((event: EventProps, index: number) => (
+              <EventCard key={index} event={event} />
+            ))}
+          </div>
+        </motion.div>
+      )}
 
       {filteredList && (
-        <div className="mt-44">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="mt-44"
+        >
           {<Team db_data={filteredList} page="FRIEND_DETAIL" />}
-        </div>
+        </motion.div>
       )}
-    </div>
+    </motion.div>
   );
 }
