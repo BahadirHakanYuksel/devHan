@@ -168,6 +168,10 @@ button {
   @apply fixed bottom-0 right-10 w-80 rounded-t-lg min-h-14 bg-[#202020];
 }
 
+.profileEvents {
+  @apply w-full mx-auto flex flex-wrap justify-center gap-5;
+}
+
 /* --------------------------------------------------------------------- */
 
 @media (max-width: 1024px) {
@@ -253,6 +257,10 @@ button {
 
   .updateNotesButton {
     @apply text-sm w-8 h-8 border-t-2 rounded-full bg-black;
+  }
+
+  .profileEvents {
+    @apply grid-cols-1;
   }
 }
 

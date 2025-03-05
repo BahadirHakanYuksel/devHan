@@ -1,7 +1,3 @@
-.eventOperationCard {
-  @apply absolute w-[1100px]  bg-opacity-30 left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-10 px-7 flex flex-col;
-}
-
 .eop_main {
   @apply w-full bg-black border-2 border-solid border-l-[#888] border-t-[#777] border-r-[#666] border-b-[#555] p-8 rounded-lg rounded-t-none border-t-0 gap-5;
   display: grid;
@@ -19,4 +15,39 @@
   @apply bg-black px-2.5 py-0.5 text-base flex items-center
     justify-center absolute h-8 border-2 border-solid border-[#555] rounded-full
     duration-300 pointer-events-none -top-6 right-2;
+}
+
+.eop_label {
+  @apply flex items-center flex-col gap-2.5 justify-center bg-white bg-opacity-10 h-14 w-80 rounded-lg hover:bg-blue-200 duration-200 hover:text-black cursor-pointer border-2 border-solid border-blue-200 font-medium;
+}
+
+.eop_footer {
+  @apply flex items-center justify-between;
+}
+
+.eop_bottomInputs {
+  @apply grid grid-cols-3 gap-3.5;
+}
+
+@media screen and (max-width: 768px) {
+  .eventOperationCard {
+    @apply w-full h-screen;
+  }
+  .eop_main {
+    grid-template-columns: 1fr;
+    @apply h-full;
+  }
+
+  .eop_label {
+    @apply w-full;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .eop_footer {
+    @apply flex-col gap-5 -mt-5;
+  }
+  .eop_bottomInputs {
+    @apply grid-cols-1 gap-5;
+  }
 }

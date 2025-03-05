@@ -164,10 +164,7 @@ export default function EventOperationCard({
                   className="aspect-square w-full rounded-lg"
                   alt=""
                 />
-                <label
-                  htmlFor="takeImgToEOP2"
-                  className="flex items-center flex-col gap-2.5 justify-center bg-white bg-opacity-10 h-14 w-80 rounded-lg hover:bg-blue-200 duration-200 hover:text-black cursor-pointer border-2 border-solid border-blue-200 font-medium"
-                >
+                <label htmlFor="takeImgToEOP2" className="eop_label">
                   Etkinlikle ilgili görsel değiştir{" "}
                   <input
                     onChange={handleChange}
@@ -236,7 +233,7 @@ export default function EventOperationCard({
               </select>
               <header className="inputHeader">Etkinlik Başkanı</header>
             </div> */}
-            <div className="grid grid-cols-3 gap-3.5">
+            <div className="eop_bottomInputs">
               <div className="relative">
                 <input
                   name="date"
@@ -271,7 +268,7 @@ export default function EventOperationCard({
                 <header className="inputHeader">Kategori</header>
               </div>
             </div>
-            <div className="flex items-center justify-between">
+            <div className="eop_footer">
               <header className="text-lg">
                 <span className="text-orange-500 font-medium">#</span>
                 <span className="text-[#f0c1ac]">EkipEtkinlikte</span>

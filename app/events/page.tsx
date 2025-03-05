@@ -100,7 +100,7 @@ export default function EventPage() {
         {loading ? (
           <div>Yükleniyor...</div>
         ) : (EVENTS ?? []).length > 0 ? (
-          <div className="grid grid-cols-3 gap-10">
+          <div className="flex flex-wrap mx-auto justify-center gap-10">
             {EVENTS &&
               EVENTS.length > 0 &&
               EVENTS.map((event, i) => <EventCard key={i} event={event} />)}

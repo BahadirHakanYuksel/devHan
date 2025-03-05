@@ -199,7 +199,7 @@ export default function FriendDetailPage({
           className="mt-44"
         >
           <Title>Oluşturulan Etkinlikler</Title>
-          <div className="mx-auto grid grid-cols-3 justify-center gap-5">
+          <div className="profileEvents">
             {events.map((event: EventProps, index: number) => (
               <EventCard key={index} event={event} />
             ))}
