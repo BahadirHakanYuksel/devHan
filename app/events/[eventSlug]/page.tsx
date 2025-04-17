@@ -131,8 +131,8 @@ export default function EventDetailPage({
             <Box
               title="Google Maps Link"
               value={
-                myEvent.googleMapsLink ||
-                "Camiye sırtını verdin, anadınıı, birinci değil ikinci ışıktan sola anadınıı, sonra sapma hiç bir yere, anadınıı"
+                myEvent.googleMapsLink || "-"
+                // "Camiye sırtını verdin, anadınıı, birinci değil ikinci ışıktan sola anadınıı, sonra sapma hiç bir yere, anadınıı"
               }
             />
           </div>

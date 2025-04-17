@@ -30,6 +30,50 @@ export default function FriendDetailPage({
 
   // const { st_user } = useSelector((state: any) => state.AppStore);
 
+  // const birthday = "03-18"; // Kişinin doğum günü
+  // const today = new Date().toISOString().slice(5, 10);
+  // const [showFireworks, setShowFireworks] = useState(false);
+
+  // useEffect(() => {
+  //   if (today === birthday) {
+  //     startCelebration();
+  //   }
+  // }, []);
+
+  // function createFirework() {
+  //   const firework = document.createElement("div");
+  //   firework.className = "firework";
+  //   firework.style.left = Math.random() * 100 + "%";
+  //   firework.style.top = Math.random() * 100 + "%";
+  //   firework.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+  //   const fireworksContainer = document.getElementById("fireworks");
+  //   if (fireworksContainer) {
+  //     fireworksContainer.appendChild(firework);
+  //   }
+  //   // Yeni ses öğesi oluştur ve çal
+  //   const sound = new Audio("https://www.fesliyanstudios.com/play-mp3/2766");
+  //   sound.play();
+
+  //   setTimeout(() => firework.remove(), 1500);
+  // }
+
+  // function startCelebration() {
+  //   setShowFireworks(true);
+  //   const fireworkSound = document.getElementById(
+  //     "fireworkSound"
+  //   ) as HTMLAudioElement;
+  //   if (fireworkSound) fireworkSound.play();
+  //   let count = 0;
+  //   const interval = setInterval(() => {
+  //     createFirework();
+  //     count++;
+  //     if (count > 30) {
+  //       clearInterval(interval);
+  //       setTimeout(() => setShowFireworks(false), 15000);
+  //     }
+  //   }, 500);
+  // }
+
   useEffect(() => {
     const fetchParams = async () => {
       try {
@@ -130,6 +174,24 @@ export default function FriendDetailPage({
       fetchThisFriend(name);
     }
   }, [name]);
+
+  // <div className="text-center bg-gray-900 text-white min-h-screen flex flex-col items-center justify-center fixed z-50 left-0 top-0 w-full h-screen">
+  //       <h1 className="text-3xl font-bold">Hoş Geldiniz!</h1>
+  //       {showFireworks && (
+  //         <div
+  //           className="fixed top-0 left-0 w-full h-full pointer-events-none"
+  //           id="fireworks"
+  //         ></div>
+  //       )}
+  //       {today === birthday && (
+  //         <button
+  //           onClick={startCelebration}
+  //           className="mt-4 px-4 py-2 bg-yellow-500 text-white rounded-lg shadow-lg hover:bg-yellow-600"
+  //         >
+  //           Kutlamayı Tekrarla
+  //         </button>
+  //       )}
+  //     </div>
 
   return (
     <motion.div
